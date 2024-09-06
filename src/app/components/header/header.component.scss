@@ -1,0 +1,97 @@
+/* Estilos para el header */
+.header {
+  background-color: #0d47a1;
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 60px;
+  margin-right: 20px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 10px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  background-color: #1565c0;
+}
+
+.login-btn {
+  background-color: #4caf50;
+}
+
+.login-btn:hover {
+  background-color: #43a047;
+}
+
+.logout-btn {
+  background-color: #e53935;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Estilos para los iconos de redes sociales */
+.social-icons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons a img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1); /* Hace que los iconos sean blancos */
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover img {
+  transform: scale(1px); /* Aumenta el tamaño del icono al pasar el cursor */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .btn {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}

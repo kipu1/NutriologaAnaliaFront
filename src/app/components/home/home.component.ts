@@ -31,9 +31,4 @@ export class HomeComponent implements OnInit {
       this.nombreUsuario = 'No hay usuario logueado';
     }
   }
-
-  logout() {
-    localStorage.removeItem('currentUser'); // Remueve al usuario del almacenamiento local
-    this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
-  }
 }

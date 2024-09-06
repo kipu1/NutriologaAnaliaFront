@@ -1,0 +1,42 @@
+.servicios-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.servicio {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+
+.servicio h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.servicio p {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.btn-cta {
+  background-color: #607d8b;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-cta:hover {
+  background-color: #455a64;
+}

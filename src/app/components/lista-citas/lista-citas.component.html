@@ -1,1 +1,41 @@
-<p>lista-citas works!</p>
+<div class="lista-citas-container">
+  <h2>Lista de Citas Agendadas</h2>
+
+  <!-- Campo de búsqueda -->
+  <div class="search-box">
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Buscar por nombre"
+      [(ngModel)]="filtroNombre"
+      (input)="buscarCitas()"
+    />
+  </div>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Fecha y Hora</th>
+        <th>Motivo</th>
+        <th>Acciones</th>
+        <!-- Nueva columna para botones -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cita of citasFiltradas">
+        <td>{{ cita.nombre }}</td>
+        <td>{{ cita.telefono }}</td>
+        <td>{{ cita.fechaHora | date : "short" }}</td>
+        <td>{{ cita.motivo }}</td>
+        <td>
+          <!-- Botones para actualizar y eliminar -->
+          <button (click)="eliminarCita(cita.id)" class="btn eliminar">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

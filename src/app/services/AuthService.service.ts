@@ -20,12 +20,16 @@ export class AuthService {
   register(user: any): Observable<any> {
     return this.http.post(`${this.authUrl}/register`, user);
   }
-
-  logout(): void {
-    this.currentUserSubject.next(null);
-    // Implementar lógica adicional si es necesario
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token'); // Verifica si el token existe
   }
-
+  /* logout(): void {
+    this.currentUserSubject.next(null);
+   / Implementar lógica adicional si es necesario
+  }*/
+  logout() {
+    localStorage.removeItem('token');
+  }
   getCurrentUser(): Observable<any> {
     return this.currentUserSubject.asObservable();
   }

@@ -1,0 +1,9 @@
+<div class="servicios-container">
+  <div *ngFor="let servicio of servicios" class="servicio">
+    <h3>{{ servicio.titulo }}</h3>
+    <p>{{ servicio.descripcion }}</p>
+    <button (click)="contactarPorWhatsApp(servicio.titulo)" class="btn-cta">
+      Agenda tu cita
+    </button>
+  </div>
+</div>

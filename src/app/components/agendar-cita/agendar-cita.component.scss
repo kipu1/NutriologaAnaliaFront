@@ -1,0 +1,81 @@
+/* Contenedor del formulario */
+.form-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: "Arial", sans-serif;
+}
+
+/* Título del formulario */
+.form-container h2 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+/* Estilo de los campos del formulario */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555555;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* Placeholder color */
+.form-control::placeholder {
+  color: #aaaaaa;
+}
+
+/* Efecto al hacer foco en los inputs */
+.form-control:focus {
+  border-color: #5b9bd5;
+  outline: none;
+  box-shadow: 0 0 5px rgba(91, 155, 213, 0.5);
+}
+
+/* Estilo del botón */
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #5b9bd5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #4a8ac2;
+}
+
+/* Estilos adicionales para hacer el formulario más accesible */
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
