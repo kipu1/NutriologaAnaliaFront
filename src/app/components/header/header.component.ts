@@ -72,4 +72,7 @@ export class HeaderComponent {
   home(): void {
     this.router.navigate(['/home']);
   }
+  historia(): void {
+    this.router.navigate(['/historia-clinica']);
+  }
 }

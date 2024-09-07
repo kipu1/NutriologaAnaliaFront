@@ -9,6 +9,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { AuthGuard } from './services/AuthGuard.service';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { ConocemeComponent } from './components/conoceme/conoceme.component';
+import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'servicios', component: ServiciosComponent },
   { path: 'conoceme', component: ConocemeComponent },
+  { path: 'historia-clinica', component: HistoriaClinicaComponent },
 
   {
     path: 'lista-citas',

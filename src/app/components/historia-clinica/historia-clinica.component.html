@@ -1,0 +1,44 @@
+<div class="historia-clinica-container">
+  <h2 class="titulo-seccion">Buscar Historia Clínica</h2>
+
+  <form (ngSubmit)="buscarHistoriaClinica()" class="form-busqueda">
+    <div class="input-group">
+      <label for="cedula" class="input-label">Ingrese su cédula:</label>
+      <input
+        id="cedula"
+        [(ngModel)]="cedula"
+        name="cedula"
+        required
+        placeholder="Cédula"
+        class="input-text"
+        (input)="limpiarResultados()"
+      />
+    </div>
+    <button type="submit" class="btn-buscar">Buscar</button>
+  </form>
+
+  <div *ngIf="historiaClinica.length > 0" class="resultado">
+    <h3 class="titulo-historial">Historial de citas para {{ cedula }}:</h3>
+    <table class="tabla-historial">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha</th>
+          <th>Motivo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cita of historiaClinica">
+          <td>{{ cita.nombre }}</td>
+          <td>{{ cita.fechaHora | date : "medium" }}</td>
+          <td>{{ cita.motivo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mensaje de error si no se encuentran citas o ocurre un error -->
+  <div *ngIf="mensajeError" class="sin-resultados">
+    <p>{{ mensajeError }}</p>
+  </div>
+</div>

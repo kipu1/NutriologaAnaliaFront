@@ -13,7 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 })
 export class AgendarCitaComponent {
   // Inicia la cita con `fechaHora` como un objeto `Date`.
-  cita: Cita = new Cita(undefined, '', '', '', '');
+  cita: Cita = new Cita(undefined, '', '', '', '', '');
 
   constructor(private citaService: CitaService) {}
   agendarCita() {
@@ -23,7 +23,7 @@ export class AgendarCitaComponent {
     this.citaService.agendarCita(this.cita).subscribe({
       next: (response) => {
         alert('Cita agendada con éxito');
-        this.cita = new Cita(undefined, '', '', '', ''); // Limpiar formulario
+        this.cita = new Cita(undefined, '', '', '', '', ''); // Limpiar formulario
       },
       error: (error) => {
         alert('Error al agendar la cita');

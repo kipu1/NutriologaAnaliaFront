@@ -22,14 +22,6 @@ export class CitaService {
     return this.http.post<Cita>(`${this.apiUrl}/agendar`, cita, { headers });
   }
 
-  /*listarCitas(): Observable<Cita[]> {
-    const token = localStorage.getItem('token'); // Obtener el token del localStorage
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
-    return this.http.get<Cita[]>(`${this.apiUrl}/listar`, { headers });
-  }*/
   listarCitas(): Observable<Cita[]> {
     const token = localStorage.getItem('token'); // Obtener el token del localStorage
 
@@ -67,5 +59,12 @@ export class CitaService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Agrega el token en los encabezados
 
     return this.http.get<Cita>(`${this.apiUrl}/obtener/${id}`, { headers }); // Incluye los encabezados en la solicitud
+  }
+  obtenerCitasPorCedula(cedula: string): Observable<any[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.apiUrl}/historia/${cedula}`, {
+      headers,
+    });
   }
 }
