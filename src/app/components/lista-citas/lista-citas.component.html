@@ -1,41 +1,22 @@
-<div class="lista-citas-container">
-  <h2>Lista de Citas Agendadas</h2>
+<div class="full-calendar-container">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
 
-  <!-- Campo de búsqueda -->
-  <div class="search-box">
-    <input
-      type="text"
-      class="search-input"
-      placeholder="Buscar por nombre"
-      [(ngModel)]="filtroNombre"
-      (input)="buscarCitas()"
-    />
+<!-- Ventana Modal -->
+<div *ngIf="mostrarModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="close" (click)="cerrarModal()">&times;</span>
+    <h2>Detalles de la Cita</h2>
+    <p><strong>Nombre:</strong> {{ citaSeleccionada?.nombre }}</p>
+    <p><strong>Teléfono:</strong> {{ citaSeleccionada?.telefono }}</p>
+    <p>
+      <strong>Fecha y Hora:</strong>
+      {{ citaSeleccionada?.fechaHora | date : "medium" }}
+    </p>
+    <p><strong>Motivo:</strong> {{ citaSeleccionada?.motivo }}</p>
+    <button class="btn eliminar" (click)="eliminarCita(citaSeleccionada?.id)">
+      Eliminar Cita
+    </button>
+    <button class="btn cerrar" (click)="cerrarModal()">Cerrar</button>
   </div>
-
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Teléfono</th>
-        <th>Fecha y Hora</th>
-        <th>Motivo</th>
-        <th>Acciones</th>
-        <!-- Nueva columna para botones -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cita of citasFiltradas">
-        <td>{{ cita.nombre }}</td>
-        <td>{{ cita.telefono }}</td>
-        <td>{{ cita.fechaHora | date : "short" }}</td>
-        <td>{{ cita.motivo }}</td>
-        <td>
-          <!-- Botones para actualizar y eliminar -->
-          <button (click)="eliminarCita(cita.id)" class="btn eliminar">
-            Eliminar
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>

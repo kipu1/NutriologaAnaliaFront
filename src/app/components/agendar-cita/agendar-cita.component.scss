@@ -1,81 +1,77 @@
 /* Contenedor del formulario */
 .form-container {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
   background-color: #ffffff;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
   font-family: "Arial", sans-serif;
 }
 
 /* Título del formulario */
-.form-container h2 {
+.form-title {
   text-align: center;
-  color: #333333;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
   margin-bottom: 20px;
 }
 
-/* Estilo de los campos del formulario */
+/* Filas del formulario */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Grupo del formulario */
 .form-group {
   margin-bottom: 20px;
+  flex: 1;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   font-weight: bold;
-  color: #555555;
+  color: #333;
 }
 
+/* Input del formulario */
 .form-control {
   width: 100%;
   padding: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 16px;
-  transition: border-color 0.3s;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
-/* Placeholder color */
-.form-control::placeholder {
-  color: #aaaaaa;
-}
-
-/* Efecto al hacer foco en los inputs */
-.form-control:focus {
-  border-color: #5b9bd5;
-  outline: none;
-  box-shadow: 0 0 5px rgba(91, 155, 213, 0.5);
-}
-
-/* Estilo del botón */
-.btn-primary {
-  display: block;
+/* Botón de envío */
+.btn-submit {
   width: 100%;
-  padding: 12px;
-  background-color: #5b9bd5;
+  background-color: #e63946;
   color: white;
+  padding: 10px;
   border: none;
-  border-radius: 5px;
-  font-size: 18px;
+  border-radius: 4px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.btn-primary:hover {
-  background-color: #4a8ac2;
+.btn-submit:hover {
+  background-color: #d62828;
 }
 
-/* Estilos adicionales para hacer el formulario más accesible */
-input,
-textarea,
-button {
-  font-family: inherit;
+/* Estilo para los radios */
+.form-radio {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-textarea {
-  resize: vertical;
+.form-radio label {
+  margin-left: 5px;
 }

@@ -1,20 +1,27 @@
-/* Estilos para el header */
+/* Estilos generales del header */
 .header {
-  background-color: #0d47a1;
-  color: white;
-  padding: 10px 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background-color: #d1d1d1; /* Fondo gris claro */
+  color: #333;
+  padding: 20px 0;
+  width: 100%; /* Asegurar que el header tome el ancho completo del viewport */
+  overflow: hidden; /* Ocultar cualquier contenido que sobresalga del contenedor */
+}
+
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Asegurar que no sobrepase el ancho del contenedor */
+  padding: 0 20px; /* Ajustar el padding para que no cause desbordamiento */
+  box-sizing: border-box; /* Incluir padding y border en el width */
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.logo {
-  height: 60px;
-  margin-right: 20px;
+  width: 100%; /* Igual, asegurar que el ancho sea completo pero no más */
 }
 
 .navbar-left {
@@ -22,76 +29,71 @@
   align-items: center;
 }
 
+.logo {
+  max-width: 80px; /* Ajusta el tamaño del logo */
+  margin-right: 20px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-content h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.hero-content h2 {
+  font-size: 18px;
+  font-weight: 300;
+  margin: 5px 0;
+  color: #666;
+}
+
 .navbar-right {
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  gap: 15px;
 }
 
 .btn {
-  background-color: #1976d2;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  margin: 0 10px;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  transition: 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #1565c0;
+  background-color: #fff;
+  color: #000;
 }
 
-.login-btn {
-  background-color: #4caf50;
-}
-
-.login-btn:hover {
-  background-color: #43a047;
-}
-
+.login-btn,
 .logout-btn {
-  background-color: #e53935;
+  font-size: 14px;
 }
 
-.logout-btn:hover {
-  background-color: #d32f2f;
-}
-
-/* Estilos para los iconos de redes sociales */
-.social-icons {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-}
-
-.social-icons a img {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) invert(1); /* Hace que los iconos sean blancos */
-  transition: transform 0.3s ease;
-}
-
-.social-icons a:hover img {
-  transform: scale(1px); /* Aumenta el tamaño del icono al pasar el cursor */
-}
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
-  .navbar {
+/* Ajustes para pantallas pequeñas */
+@media only screen and (max-width: 768px) {
+  .hero-section {
     flex-direction: column;
     text-align: center;
+    padding: 0 10px; /* Ajustar el padding en pantallas pequeñas */
+  }
+
+  .navbar-right {
+    flex-direction: column;
+    margin-top: 20px;
   }
 
   .btn {
     margin-bottom: 10px;
-    width: 100%;
-  }
-
-  .social-icons {
-    justify-content: center;
   }
 }

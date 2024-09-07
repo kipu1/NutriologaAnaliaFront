@@ -6,11 +6,16 @@ import { routes } from './app/app.routes';
 import { importProvidersFrom } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    importProvidersFrom(ReactiveFormsModule, FormsModule, BrowserModule),
+    importProvidersFrom(
+      ReactiveFormsModule,
+      FormsModule,
+      BrowserModule,
+      FullCalendarModule
+    ),
   ],
 }).catch((err) => console.error(err));

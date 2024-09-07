@@ -1,50 +1,37 @@
 <header class="header">
-  <nav class="navbar">
-    <div class="navbar-left">
-      <!-- Logo -->
-      <img src="assets/imagenes/logoana.png" alt="Logo" class="logo" />
-
-      <!-- Botones visibles para todos los usuarios -->
-      <button class="btn" (click)="goToAgendarCita()">Agendar Cita</button>
-      <button class="btn" (click)="goToListaCursos()">Ver Cursos</button>
-      <button class="btn" (click)="servicios()">Servicios</button>
-
-      <!-- Botones adicionales solo para usuarios logueados -->
-      <ng-container *ngIf="isLoggedIn">
-        <button class="btn" (click)="goToListaCitas()">Lista de Citas</button>
-        <button class="btn" (click)="goToAgregarCurso()">Agregar Curso</button>
-      </ng-container>
-    </div>
-
-    <div class="navbar-right">
-      <!-- Mostrar 'Login' si no está logueado, de lo contrario 'Cerrar Sesión' -->
-      <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
-        <button class="btn login-btn" (click)="goToLogin()">Login</button>
-        <!-- Sección de redes sociales -->
-        <div class="social-icons">
-          <a
-            href="https://www.facebook.com/NutricionistaAnaliaRoman/?locale=es_LA"
-            target="_blank"
-          >
-            <img src="assets/imagenes/Facebook.png" alt="Facebook" />
-          </a>
-          <a
-            href="https://www.instagram.com/nutricionistaanaliaroman/"
-            target="_blank"
-          >
-            <img src="assets/imagenes/Instagram.png" alt="Instagram" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/analía-román-nutricionista-89b817204/?originalSubdomain=ec"
-            target="_blank"
-          >
-            <img src="assets/imagenes/LinkedIn.png" alt="LinkedIn" />
-          </a>
+  <div class="hero-section">
+    <nav class="navbar">
+      <!-- Logo y nombre alineados a la izquierda -->
+      <div class="navbar-left">
+        <img src="assets/imagenes/logoana.png" alt="Logo" class="logo" />
+        <div class="hero-content">
+          <h1>Analia Roman</h1>
+          <h2>Nutricionista</h2>
         </div>
-      </ng-container>
-      <ng-template #loggedInTemplate>
-        <button class="btn logout-btn" (click)="logout()">Cerrar Sesión</button>
-      </ng-template>
-    </div>
-  </nav>
+      </div>
+
+      <!-- Navegación en la parte inferior centrada -->
+      <div class="navbar-right">
+        <button class="btn" (click)="goToAgendarCita()">Agendar Cita</button>
+        <button class="btn" (click)="goToListaCursos()">Ver Cursos</button>
+        <button class="btn" (click)="servicios()">Servicios</button>
+
+        <ng-container *ngIf="isLoggedIn">
+          <button class="btn" (click)="goToListaCitas()">Lista de Citas</button>
+          <button class="btn" (click)="goToAgregarCurso()">
+            Agregar Curso
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
+          <button class="btn login-btn" (click)="goToLogin()">Login</button>
+        </ng-container>
+        <ng-template #loggedInTemplate>
+          <button class="btn logout-btn" (click)="logout()">
+            Cerrar Sesión
+          </button>
+        </ng-template>
+      </div>
+    </nav>
+  </div>
 </header>
