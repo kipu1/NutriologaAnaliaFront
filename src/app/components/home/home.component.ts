@@ -15,8 +15,9 @@ export class HomeComponent implements OnInit {
   nombreUsuario: string | null = '';
 
   constructor(private router: Router) {}
+  ngOnInit(): void {}
 
-  ngOnInit() {
+  /* ngOnInit() {
     const currentUser = localStorage.getItem('currentUser');
     console.log('Usuario logueado:', currentUser); // Verifica en la consola si el currentUser tiene nombre y token
 
@@ -30,5 +31,11 @@ export class HomeComponent implements OnInit {
     } else {
       this.nombreUsuario = 'No hay usuario logueado';
     }
+  }*/
+  servicios(): void {
+    this.router.navigate(['/servicios']);
+  }
+  conoceme(): void {
+    this.router.navigate(['/conoceme']);
   }
 }

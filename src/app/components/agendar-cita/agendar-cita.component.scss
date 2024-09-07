@@ -19,11 +19,6 @@
 }
 
 /* Filas del formulario */
-.form-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
 
 /* Grupo del formulario */
 .form-group {
@@ -50,7 +45,7 @@
 /* Botón de envío */
 .btn-submit {
   width: 100%;
-  background-color: #e63946;
+  background-color: #9dedf0;
   color: white;
   padding: 10px;
   border: none;
@@ -62,7 +57,7 @@
 }
 
 .btn-submit:hover {
-  background-color: #d62828;
+  background-color: #d0a3fa;
 }
 
 /* Estilo para los radios */

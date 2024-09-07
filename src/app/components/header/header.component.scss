@@ -1,7 +1,7 @@
 /* Estilos generales del header */
 .header {
   position: relative;
-  background-color: #d1d1d1; /* Fondo gris claro */
+  background-color: #2a944a; /* Fondo gris claro */
   color: #333;
   padding: 20px 0;
   width: 100%; /* Asegurar que el header tome el ancho completo del viewport */
@@ -51,7 +51,7 @@
   font-size: 18px;
   font-weight: 300;
   margin: 5px 0;
-  color: #666;
+  color: #000000;
 }
 
 .navbar-right {
@@ -96,4 +96,23 @@
   .btn {
     margin-bottom: 10px;
   }
+}
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Estilos del botón de Cerrar Sesión */
+
+.logout-btn:hover {
+  background-color: #cea2a2;
+}
+
+/* Estilo para el texto de Bienvenida */
+.bienvenido-text {
+  font-size: 12px; /* Texto pequeño */
+  color: #333;
+  margin: 5px 0 0 0; /* Un pequeño margen superior */
+  text-align: center; /* Para que se centre debajo del botón */
 }

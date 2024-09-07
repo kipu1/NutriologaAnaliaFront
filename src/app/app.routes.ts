@@ -8,6 +8,7 @@ import { AgendarCitaComponent } from './components/agendar-cita/agendar-cita.com
 import { RegistroComponent } from './components/registro/registro.component';
 import { AuthGuard } from './services/AuthGuard.service';
 import { ServiciosComponent } from './components/servicios/servicios.component';
+import { ConocemeComponent } from './components/conoceme/conoceme.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'agendar-cita', component: AgendarCitaComponent },
   { path: 'home', component: HomeComponent },
   { path: 'servicios', component: ServiciosComponent },
+  { path: 'conoceme', component: ConocemeComponent },
 
   {
     path: 'lista-citas',

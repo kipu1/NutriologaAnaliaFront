@@ -6,12 +6,13 @@
         <img src="assets/imagenes/logoana.png" alt="Logo" class="logo" />
         <div class="hero-content">
           <h1>Analia Roman</h1>
-          <h2>Nutricionista</h2>
+          <h2>Nutrióloga</h2>
         </div>
       </div>
 
       <!-- Navegación en la parte inferior centrada -->
       <div class="navbar-right">
+        <button class="btn" (click)="home()">Principal</button>
         <button class="btn" (click)="goToAgendarCita()">Agendar Cita</button>
         <button class="btn" (click)="goToListaCursos()">Ver Cursos</button>
         <button class="btn" (click)="servicios()">Servicios</button>
@@ -26,10 +27,14 @@
         <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
           <button class="btn login-btn" (click)="goToLogin()">Login</button>
         </ng-container>
+
         <ng-template #loggedInTemplate>
-          <button class="btn logout-btn" (click)="logout()">
-            Cerrar Sesión
-          </button>
+          <div class="user-info">
+            <button class="btn logout-btn" (click)="logout()">
+              Cerrar Sesión
+            </button>
+            <p class="bienvenido-text">Bienvenido, {{ nombreUsuario }}!</p>
+          </div>
         </ng-template>
       </div>
     </nav>

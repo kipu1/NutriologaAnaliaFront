@@ -12,11 +12,24 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   isLoggedIn: boolean = false;
-
+  nombreUsuario: string | null = '';
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.checkLoginStatus(); // Verifica el estado de autenticación al cargar el componente
+    const currentUser = localStorage.getItem('currentUser');
+    console.log('Usuario logueado:', currentUser); // Verifica en la consola si el currentUser tiene nombre y token
+
+    if (currentUser) {
+      const user = JSON.parse(currentUser);
+      if (user.nombre) {
+        this.nombreUsuario = user.nombre; // Asigna el nombre correctamente
+      } else {
+        this.nombreUsuario = 'Nombre no encontrado'; // Mensaje por si no encuentra el nombre
+      }
+    } else {
+      this.nombreUsuario = 'No hay usuario logueado';
+    }
   }
 
   checkLoginStatus(): void {
@@ -55,5 +68,8 @@ export class HeaderComponent {
 
   servicios(): void {
     this.router.navigate(['/servicios']);
+  }
+  home(): void {
+    this.router.navigate(['/home']);
   }
 }

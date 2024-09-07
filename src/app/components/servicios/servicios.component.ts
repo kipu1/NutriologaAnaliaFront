@@ -39,6 +39,6 @@ export class ServiciosComponent {
       `Buen día, estoy interesado en el servicio de: ${titulo}. ¿Me puede proporcionar más información?`
     );
     const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
-    window.location.href = url; // Cambia window.open a window.location.href
+    window.open(url, '_blank'); // Abrir en nueva ventana o pestaña
   }
 }
