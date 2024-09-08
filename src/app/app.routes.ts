@@ -11,6 +11,7 @@ import { ServiciosComponent } from './components/servicios/servicios.component';
 import { ConocemeComponent } from './components/conoceme/conoceme.component';
 import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { ListaServicioComponent } from './components/lista-servicio/lista-servicio.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'historia-clinica', component: HistoriaClinicaComponent },
   { path: 'perfil', component: PerfilComponent },
   { path: 'servicios', component: ServiciosComponent },
+  { path: 'lista-servicio', component: ListaServicioComponent },
 
   {
     path: 'lista-citas',

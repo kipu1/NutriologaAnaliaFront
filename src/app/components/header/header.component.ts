@@ -78,4 +78,7 @@ export class HeaderComponent {
   perfil(): void {
     this.router.navigate(['/perfil']);
   }
+  Listaservicios(): void {
+    this.router.navigate(['/lista-servicio']);
+  }
 }

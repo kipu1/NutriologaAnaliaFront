@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Servicio } from '../../models/servicio';
 import { ServicioService } from '../../services/servicio.service';
+import { UsuarioService } from '../../services/usuario.service';
+import { Usuario } from '../../models/usuario';
 
 @Component({
   selector: 'app-servicios',
@@ -12,10 +14,33 @@ import { ServicioService } from '../../services/servicio.service';
   styleUrl: './servicios.component.scss',
 })
 export class ServiciosComponent {
-  // Inicia el servicio como un nuevo objeto Servicio.
-  servicio: Servicio = new Servicio(undefined, '', '');
+  servicio: Servicio;
+  usuarioAutenticado: Usuario | null = null; // Variable para almacenar el usuario autenticado
 
-  constructor(private servicioService: ServicioService) {}
+  constructor(
+    private servicioService: ServicioService,
+    private usuarioService: UsuarioService // Inyectar el UsuarioService para obtener el usuario autenticado
+  ) {
+    // Obtener el usuario autenticado al iniciar el componente
+    this.usuarioService.obtenerPerfil().subscribe({
+      next: (usuario) => {
+        this.usuarioAutenticado = usuario; // Guardar el usuario autenticado
+        // Inicializar el servicio con el usuario autenticado
+        this.servicio = new Servicio(
+          undefined,
+          '',
+          '',
+          this.usuarioAutenticado
+        );
+      },
+      error: (error) => {
+        console.error('Error al obtener el perfil del usuario:', error);
+      },
+    });
+
+    // Inicializar el servicio con usuario `null` mientras obtenemos el usuario autenticado
+    this.servicio = new Servicio(undefined, '', '', null);
+  }
 
   guardarServicio() {
     if (this.servicio.id) {
@@ -49,7 +74,7 @@ export class ServiciosComponent {
 
   resetForm() {
     // Reinicia el formulario a su estado inicial
-    this.servicio = new Servicio(undefined, '', '');
+    this.servicio = new Servicio(undefined, '', '', this.usuarioAutenticado);
   }
 }
 /*

@@ -11,13 +11,16 @@
         <button class="btn" (click)="home()">Principal</button>
         <button class="btn" (click)="goToAgendarCita()">Agendar Cita</button>
         <button class="btn" (click)="goToListaCursos()">Ver Cursos</button>
-        <button class="btn" (click)="servicios()">Servicios</button>
+        <button class="btn" (click)="Listaservicios()">
+          Lista de Servicios
+        </button>
 
         <ng-container *ngIf="isLoggedIn">
           <button class="btn" (click)="goToListaCitas()">Lista de Citas</button>
           <button class="btn" (click)="goToAgregarCurso()">
             Agregar Curso
           </button>
+          <button class="btn" (click)="servicios()">Servicios</button>
           <button class="btn" (click)="historia()">Historia clinica</button>
           <div class="perfil-container">
             <img
