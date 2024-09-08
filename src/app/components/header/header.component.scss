@@ -23,7 +23,19 @@
   align-items: center;
   width: 100%; /* Igual, asegurar que el ancho sea completo pero no más */
 }
+.perfil-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #007bff;
+  transition: border-color 0.3s ease;
+}
 
+.perfil-btn:hover {
+  border-color: #0056b3;
+}
 .navbar-left {
   display: flex;
   align-items: center;

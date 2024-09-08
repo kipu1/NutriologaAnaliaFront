@@ -19,7 +19,14 @@
             Agregar Curso
           </button>
           <button class="btn" (click)="historia()">Historia clinica</button>
-          <button class="btn" (click)="perfil()">Perfil clinica</button>
+          <div class="perfil-container">
+            <img
+              src="assets/imagenes/perfil.png"
+              alt="Perfil"
+              class="perfil-btn"
+              (click)="perfil()"
+            />
+          </div>
         </ng-container>
 
         <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
@@ -31,7 +38,6 @@
             <button class="btn logout-btn" (click)="logout()">
               Cerrar Sesión
             </button>
-            <p class="bienvenido-text">Bienvenido, {{ nombreUsuario }}!</p>
           </div>
         </ng-template>
       </div>
