@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { Servicio } from '../../models/servicio';
+import { ServicioService } from '../../services/servicio.service';
 
 @Component({
   selector: 'app-servicios',
@@ -10,6 +12,48 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   styleUrl: './servicios.component.scss',
 })
 export class ServiciosComponent {
+  // Inicia el servicio como un nuevo objeto Servicio.
+  servicio: Servicio = new Servicio(undefined, '', '');
+
+  constructor(private servicioService: ServicioService) {}
+
+  guardarServicio() {
+    if (this.servicio.id) {
+      // Si el servicio ya tiene ID, lo actualizamos
+      this.servicioService
+        .actualizarServicio(this.servicio.id, this.servicio)
+        .subscribe({
+          next: (response) => {
+            alert('Servicio actualizado con éxito');
+            this.resetForm(); // Limpiar el formulario
+          },
+          error: (error) => {
+            alert('Error al actualizar el servicio');
+            console.error('Error:', error);
+          },
+        });
+    } else {
+      // Si no tiene ID, creamos un nuevo servicio
+      this.servicioService.crearServicio(this.servicio).subscribe({
+        next: (response) => {
+          alert('Servicio creado con éxito');
+          this.resetForm(); // Limpiar el formulario
+        },
+        error: (error) => {
+          alert('Error al crear el servicio');
+          console.error('Error:', error);
+        },
+      });
+    }
+  }
+
+  resetForm() {
+    // Reinicia el formulario a su estado inicial
+    this.servicio = new Servicio(undefined, '', '');
+  }
+}
+/*
+
   servicios = [
     {
       titulo: 'PESO/OPTIMIZACIÓN COMPOSICIÓN CORPORAL',
@@ -41,4 +85,4 @@ export class ServiciosComponent {
     const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
     window.open(url, '_blank'); // Abrir en nueva ventana o pestaña
   }
-}
+}*/

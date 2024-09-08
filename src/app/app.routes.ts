@@ -22,6 +22,7 @@ export const routes: Routes = [
   { path: 'conoceme', component: ConocemeComponent },
   { path: 'historia-clinica', component: HistoriaClinicaComponent },
   { path: 'perfil', component: PerfilComponent },
+  { path: 'servicios', component: ServiciosComponent },
 
   {
     path: 'lista-citas',
