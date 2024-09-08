@@ -44,7 +44,7 @@
 }
 
 .btn-buscar {
-  background-color: #28a745;
+  background-color: #005f73;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -55,17 +55,11 @@
 }
 
 .btn-buscar:hover {
-  background-color: #218838;
+  background-color: #09a9c9;
 }
 
 .resultado {
   margin-top: 20px;
-}
-
-.titulo-historial {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #333;
 }
 
 .tabla-historial {
@@ -78,20 +72,29 @@
   padding: 12px 15px;
   border: 1px solid #ccc;
   text-align: left;
+  vertical-align: top; /* Alinea el contenido en la parte superior */
 }
 
 .tabla-historial th {
-  background-color: #007bff;
+  background-color: #005f73;
   color: white;
   font-weight: bold;
 }
 
 .tabla-historial td {
   background-color: #fff;
+  word-wrap: break-word; /* Ajusta el texto largo en las celdas */
+  white-space: normal; /* Permite que el texto haga saltos de línea */
+  max-width: 200px; /* Limita el ancho de las celdas */
 }
 
 .tabla-historial tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+.tabla-historial td.motivo {
+  overflow-wrap: break-word; /* Asegura que el texto se ajuste si es muy largo */
+  word-break: break-word;
 }
 
 .sin-resultados {

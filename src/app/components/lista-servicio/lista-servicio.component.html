@@ -1,20 +1,28 @@
-<div class="container">
-  <h2>Lista de Servicios</h2>
+<div class="container servicios-section">
+  <h2 class="text-center mb-5">Lista de Servicios</h2>
 
-  <div *ngFor="let servicio of servicios" class="card mb-3">
-    <div class="card-body">
-      <h5 class="card-title">{{ servicio.titulo }}</h5>
-      <p class="card-text">{{ servicio.descripcion }}</p>
-
-      <!-- Botón que llama a la función contactarPorWhatsApp -->
-      <button
-        (click)="
-          contactarPorWhatsApp(servicio.titulo, servicio.telefonoUsuario)
-        "
-        class="btn btn-success"
+  <div class="row justify-content-center">
+    <div
+      *ngFor="let servicio of servicios"
+      class="col-lg-4 col-md-6 col-sm-6 col-12 mb-3 d-flex align-items-stretch"
+    >
       >
-        Contactar al Usuario por WhatsApp
-      </button>
+      <div class="servicio-card">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ servicio.titulo }}</h5>
+          <p class="card-text">{{ servicio.descripcion }}</p>
+
+          <!-- Botón que llama a la función contactarPorWhatsApp -->
+          <button
+            (click)="
+              contactarPorWhatsApp(servicio.titulo, servicio.telefonoUsuario)
+            "
+            class="btn btn-primary-custom"
+          >
+            WhatsApp
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

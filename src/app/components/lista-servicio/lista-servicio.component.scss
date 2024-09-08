@@ -1,0 +1,58 @@
+.servicios-section {
+  padding: 40px 0;
+  background-color: #f8f9fa;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Cambiado a center para centrar las tarjetas */
+}
+
+.servicio-card {
+  background-color: #fff;
+  border-radius: 20px; /* Cambié el borde a un valor más estándar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  width: 100%; /* Asegúrate de que ocupe todo el ancho de la columna */
+  max-width: 100%; /* Evita que la tarjeta se expanda más allá del contenedor */
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    font-family: "Lato", sans-serif;
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 15px;
+  }
+
+  .btn-primary-custom {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: #7eb5f0;
+      box-shadow: 0 4px 12px rgba(103, 176, 255, 0.4);
+    }
+  }
+}

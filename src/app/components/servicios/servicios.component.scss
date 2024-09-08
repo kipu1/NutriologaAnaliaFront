@@ -1,41 +1,69 @@
-h1 {
-  color: #2c3e50;
+.servicio-form {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 2rem auto;
 }
 
-form {
-  margin-bottom: 20px;
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
-input,
-textarea {
+label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
   display: block;
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  color: #333;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #005f73;
+  outline: none;
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.btn-submit {
+  background-color: #005f73;
   color: white;
   border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+.btn-submit:hover {
+  background-color: #0a9396;
 }
 
-ul {
-  list-style-type: none;
-}
+@media (max-width: 768px) {
+  .servicio-form {
+    padding: 1rem;
+  }
 
-li {
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
+  .form-control {
+    font-size: 0.9rem;
+  }
+
+  .btn-submit {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem;
+  }
 }

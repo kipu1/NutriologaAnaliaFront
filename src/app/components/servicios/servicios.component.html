@@ -1,16 +1,26 @@
-<form (ngSubmit)="guardarServicio()">
-  <div>
+<form (ngSubmit)="guardarServicio()" class="servicio-form">
+  <div class="form-group">
     <label for="titulo">Título:</label>
-    <input id="titulo" [(ngModel)]="servicio.titulo" name="titulo" required />
+    <input
+      id="titulo"
+      [(ngModel)]="servicio.titulo"
+      name="titulo"
+      class="form-control"
+      placeholder="Ingrese el título del servicio"
+      required
+    />
   </div>
-  <div>
-    <label for="descripcion">Descripción:</label>
+  <div class="form-group">
+    <label for="motivo">Descripcion:</label>
     <textarea
       id="descripcion"
       [(ngModel)]="servicio.descripcion"
       name="descripcion"
       required
+      class="form-control"
+      placeholder="Ingresa la Descripcion"
+      maxlength="5000"
     ></textarea>
   </div>
-  <button type="submit">Guardar Servicio</button>
+  <button type="submit" class="btn-submit">Guardar Servicio</button>
 </form>

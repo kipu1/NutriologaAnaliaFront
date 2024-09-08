@@ -31,7 +31,7 @@
         <tr *ngFor="let cita of historiaClinica">
           <td>{{ cita.nombre }}</td>
           <td>{{ cita.fechaHora | date : "medium" }}</td>
-          <td>{{ cita.motivo }}</td>
+          <td class="motivo">{{ cita.motivo }}</td>
         </tr>
       </tbody>
     </table>

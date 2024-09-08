@@ -18,7 +18,7 @@ export class AgendarCitaComponent {
   constructor(private citaService: CitaService) {}
   agendarCita() {
     // Convertir la fecha a formato ISO antes de enviar al backend
-    this.cita.fechaHora = new Date(this.cita.fechaHora).toISOString(); // Aquí lo dejas
+    this.cita.fechaHora = new Date(this.cita.fechaHora).toISOString();
 
     this.citaService.agendarCita(this.cita).subscribe({
       next: (response) => {
@@ -26,7 +26,15 @@ export class AgendarCitaComponent {
         this.cita = new Cita(undefined, '', '', '', '', ''); // Limpiar formulario
       },
       error: (error) => {
-        alert('Error al agendar la cita');
+        if (error.status === 409) {
+          // Si el backend retorna 409 (CONFLICT), la fecha y hora están ocupadas
+          alert(
+            'La fecha y hora seleccionada ya está ocupada. Por favor, elige otro horario.'
+          );
+        } else {
+          // Manejo de otros errores
+          alert('Error al agendar la cita');
+        }
         console.error('Error:', error);
       },
     });
