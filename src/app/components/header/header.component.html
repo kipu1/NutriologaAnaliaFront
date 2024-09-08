@@ -4,10 +4,6 @@
       <!-- Logo y nombre alineados a la izquierda -->
       <div class="navbar-left">
         <img src="assets/imagenes/logoana.png" alt="Logo" class="logo" />
-        <div class="hero-content">
-          <h1>Analia Román</h1>
-          <h2>Nutrióloga</h2>
-        </div>
       </div>
 
       <!-- Navegación en la parte inferior centrada -->
@@ -23,6 +19,7 @@
             Agregar Curso
           </button>
           <button class="btn" (click)="historia()">Historia clinica</button>
+          <button class="btn" (click)="perfil()">Perfil clinica</button>
         </ng-container>
 
         <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">

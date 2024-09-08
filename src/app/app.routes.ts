@@ -10,6 +10,7 @@ import { AuthGuard } from './services/AuthGuard.service';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { ConocemeComponent } from './components/conoceme/conoceme.component';
 import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'servicios', component: ServiciosComponent },
   { path: 'conoceme', component: ConocemeComponent },
   { path: 'historia-clinica', component: HistoriaClinicaComponent },
+  { path: 'perfil', component: PerfilComponent },
 
   {
     path: 'lista-citas',

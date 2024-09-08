@@ -75,4 +75,7 @@ export class HeaderComponent {
   historia(): void {
     this.router.navigate(['/historia-clinica']);
   }
+  perfil(): void {
+    this.router.navigate(['/perfil']);
+  }
 }

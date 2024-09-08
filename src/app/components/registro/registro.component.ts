@@ -21,6 +21,8 @@ import {
 export class RegistroComponent {
   nombre: string = '';
   correo: string = '';
+  telefono: string = '';
+  direccion: string = '';
   contrasena: string = '';
   errorMessage: string = '';
 
@@ -28,7 +30,13 @@ export class RegistroComponent {
 
   registro() {
     // Verificar que todos los campos están completos
-    if (!this.nombre || !this.correo || !this.contrasena) {
+    if (
+      !this.nombre ||
+      !this.correo ||
+      !this.telefono ||
+      !this.direccion ||
+      !this.contrasena
+    ) {
       this.errorMessage = 'Por favor, completa todos los campos';
       return;
     }
@@ -36,9 +44,10 @@ export class RegistroComponent {
     const usuario = {
       nombre: this.nombre,
       correo: this.correo,
+      telefono: this.telefono, // Ahora está correcto
+      direccion: this.direccion, // Ahora está correcto
       contrasena: this.contrasena,
     };
-
     this.usuarioService.registro(usuario).subscribe(
       (response) => {
         // Redirigir al login si el registro es exitoso

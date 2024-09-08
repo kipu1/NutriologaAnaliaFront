@@ -1,0 +1,20 @@
+<div class="perfil-container">
+  <h2>Perfil de Usuario</h2>
+
+  <div *ngIf="usuario">
+    <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+    <p><strong>Correo:</strong> {{ usuario.correo }}</p>
+
+    <div>
+      <label for="telefono">Teléfono:</label>
+      <input id="telefono" [(ngModel)]="usuario.telefono" />
+    </div>
+
+    <div>
+      <label for="direccion">Dirección:</label>
+      <input id="direccion" [(ngModel)]="usuario.direccion" />
+    </div>
+
+    <button (click)="actualizarPerfil()">Actualizar Perfil</button>
+  </div>
+</div>
