@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   servicios(): void {
-    this.router.navigate(['/servicios']);
+    this.router.navigate(['/lista-servicio']);
   }
   guardarDireccion() {
     const direccionCodificada = encodeURIComponent(this.nuevaDireccion);

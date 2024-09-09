@@ -12,6 +12,7 @@ import { ConocemeComponent } from './components/conoceme/conoceme.component';
 import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ListaServicioComponent } from './components/lista-servicio/lista-servicio.component';
+import { CrearCursoComponent } from './components/crear-curso/crear-curso.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,7 +26,7 @@ export const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },
   { path: 'servicios', component: ServiciosComponent },
   { path: 'lista-servicio', component: ListaServicioComponent },
-
+  { path: 'crear-curso', component: CrearCursoComponent },
   {
     path: 'lista-citas',
     component: ListaCitasComponent,

@@ -59,7 +59,7 @@ export class HeaderComponent {
   }
 
   goToAgregarCurso(): void {
-    this.router.navigate(['/agregar-curso']);
+    this.router.navigate(['/crear-curso']);
   }
 
   goToListaCursos(): void {
@@ -80,5 +80,8 @@ export class HeaderComponent {
   }
   Listaservicios(): void {
     this.router.navigate(['/lista-servicio']);
+  }
+  conoceme(): void {
+    this.router.navigate(['/conoceme']);
   }
 }
