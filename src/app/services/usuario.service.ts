@@ -86,12 +86,14 @@ export class UsuarioService {
       nombre: usuario.nombre,
       correo: usuario.correo,
       telefono: usuario.telefono,
-      direccion: usuario.direccion,
+
       token: token,
     };
     localStorage.setItem('currentUser', JSON.stringify(user)); // Guardar toda la información del usuario en localStorage
   }
-
+  obtenerDireccion(): Observable<{ direccion: string }> {
+    return this.http.get<{ direccion: string }>(this.apiUrl);
+  }
   // Obtener nombre del usuario desde localStorage
   getNombreUsuario(): string | null {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');

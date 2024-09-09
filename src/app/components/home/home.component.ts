@@ -4,25 +4,39 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DireccionService } from '../../services/direccion.service';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, CommonModule], // Importa los componentes standalone aquí
+  imports: [HeaderComponent, FooterComponent, CommonModule, FormsModule], // Importa los componentes standalone aquí
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   currentSlide: number = 0;
   totalSlides: number = 3;
+  mapaUrl: string =
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.9170632923525!2d-103.35551598455352!3d20.675157102141455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b08f7db0c12d%3A0x7ed776d60c979e8d!2sCentro%2C%2044600%20Guadalajara%2C%20Jal.%2C%20México!5e0!3m2!1ses!2sec!4v1693945987841!5m2!1ses!2sec';
+  nuevaDireccion: string = '';
+  constructor(
+    public sanitizer: DomSanitizer,
+    private direccionService: DireccionService,
+    private router: Router
+  ) {}
 
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.guardarDireccion();
+  }
 
   servicios(): void {
     this.router.navigate(['/servicios']);
   }
-
+  guardarDireccion() {
+    const direccionCodificada = encodeURIComponent(this.nuevaDireccion);
+    this.mapaUrl = `https://www.google.com/maps/embed/v1/place?AIzaSyBqJM0nWssDSQgtBg2vz14zxva5JPjrtEg&q=${direccionCodificada}`;
+  }
   conoceme(): void {
     this.router.navigate(['/conoceme']);
   }

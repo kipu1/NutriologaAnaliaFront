@@ -1,5 +1,9 @@
 <form (ngSubmit)="agendarCita()" class="form-container">
   <h2 class="form-title">Agendar Cita</h2>
+  <small class="text-muted text-large">
+    Horario de atención: Martes, Miércoles, Jueves se atiende de 5:30 PM a 8:30
+    PM.
+  </small>
 
   <div class="form-row">
     <div class="form-group">
@@ -48,6 +52,8 @@
       name="fechaHora"
       required
       class="form-control"
+      (change)="validarFechaHora()"
+      [min]="fechaMinima"
     />
   </div>
 
