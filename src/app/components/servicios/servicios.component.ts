@@ -5,6 +5,7 @@ import { Servicio } from '../../models/servicio';
 import { ServicioService } from '../../services/servicio.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../models/usuario';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-servicios',
@@ -19,7 +20,8 @@ export class ServiciosComponent {
 
   constructor(
     private servicioService: ServicioService,
-    private usuarioService: UsuarioService // Inyectar el UsuarioService para obtener el usuario autenticado
+    private usuarioService: UsuarioService, // Inyectar el UsuarioService para obtener el usuario autenticado
+    private toastr: ToastrService // Inyectar ToastrService para las alertas
   ) {
     // Obtener el usuario autenticado al iniciar el componente
     this.usuarioService.obtenerPerfil().subscribe({
@@ -43,17 +45,26 @@ export class ServiciosComponent {
   }
 
   guardarServicio() {
+    // Validar si los campos de título y descripción están vacíos
+    if (!this.servicio.titulo || !this.servicio.descripcion) {
+      this.toastr.error(
+        'Por favor, completa todos los campos antes de guardar',
+        'Error'
+      );
+      return; // Si están vacíos, no proceder con la creación o actualización
+    }
+
     if (this.servicio.id) {
       // Si el servicio ya tiene ID, lo actualizamos
       this.servicioService
         .actualizarServicio(this.servicio.id, this.servicio)
         .subscribe({
           next: (response) => {
-            alert('Servicio actualizado con éxito');
+            this.toastr.success('Servicio actualizado con éxito', 'Éxito');
             this.resetForm(); // Limpiar el formulario
           },
           error: (error) => {
-            alert('Error al actualizar el servicio');
+            this.toastr.error('Error al actualizar el servicio', 'Error');
             console.error('Error:', error);
           },
         });
@@ -61,11 +72,11 @@ export class ServiciosComponent {
       // Si no tiene ID, creamos un nuevo servicio
       this.servicioService.crearServicio(this.servicio).subscribe({
         next: (response) => {
-          alert('Servicio creado con éxito');
+          this.toastr.success('Servicio creado con éxito', 'Éxito');
           this.resetForm(); // Limpiar el formulario
         },
         error: (error) => {
-          alert('Error al crear el servicio');
+          this.toastr.error('Error al crear el servicio', 'Error');
           console.error('Error:', error);
         },
       });

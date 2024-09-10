@@ -10,6 +10,7 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registro',
@@ -22,40 +23,50 @@ export class RegistroComponent {
   nombre: string = '';
   correo: string = '';
   telefono: string = '';
-
   contrasena: string = '';
-  errorMessage: string = '';
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private toastr: ToastrService // Inyecta ToastrService
+  ) {}
 
   registro() {
-    // Verificar que todos los campos están completos
+    // Verifica que todos los campos están completos
     if (!this.nombre || !this.correo || !this.telefono || !this.contrasena) {
-      this.errorMessage = 'Por favor, completa todos los campos';
+      // Usa Toastr para mostrar la alerta en vez de un mensaje en HTML
+      this.toastr.error('Por favor, completa todos los campos.', 'Error');
       return;
     }
 
     const usuario = {
       nombre: this.nombre,
       correo: this.correo,
-      telefono: this.telefono, // Ahora está correcto
-      // Ahora está correcto
+      telefono: this.telefono,
       contrasena: this.contrasena,
     };
+
     this.usuarioService.registro(usuario).subscribe(
       (response) => {
-        // Redirigir al login si el registro es exitoso
+        this.toastr.success('Registro exitoso', 'Éxito');
         this.router.navigate(['/login']);
       },
       (error) => {
         if (error.status === 403) {
-          this.errorMessage = 'No tienes permiso para realizar esta acción';
+          this.toastr.error(
+            'No tienes permiso para realizar esta acción',
+            'Error'
+          );
         } else if (error.status === 500) {
-          this.errorMessage =
-            'Error en el servidor. Intenta de nuevo más tarde.';
+          this.toastr.error(
+            'Error en el servidor. Intenta de nuevo más tarde.',
+            'Error del servidor'
+          );
         } else {
-          this.errorMessage =
-            'Ocurrió un error inesperado. Inténtalo de nuevo.';
+          this.toastr.error(
+            'Ocurrió un error inesperado. Inténtalo de nuevo.',
+            'Error'
+          );
         }
         console.error('Error en el registro', error);
       }

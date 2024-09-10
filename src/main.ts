@@ -7,6 +7,8 @@ import { importProvidersFrom } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
@@ -15,7 +17,9 @@ bootstrapApplication(AppComponent, {
       ReactiveFormsModule,
       FormsModule,
       BrowserModule,
-      FullCalendarModule
+      FullCalendarModule,
+      BrowserAnimationsModule,
+      ToastrModule.forRoot()
     ),
   ],
 }).catch((err) => console.error(err));

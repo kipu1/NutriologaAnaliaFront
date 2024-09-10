@@ -3,6 +3,7 @@ import { Cita } from '../../models/cita';
 import { CitaService } from '../../services/cita.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-agendar-cita',
@@ -15,15 +16,32 @@ export class AgendarCitaComponent {
   // Inicia la cita con `fechaHora` como un objeto `Date`.
   cita: Cita = new Cita(undefined, '', '', '', '', '');
   fechaMinima: string;
-  constructor(private citaService: CitaService) {
+
+  constructor(
+    private citaService: CitaService,
+    private toastr: ToastrService // Inyectar ToastrService
+  ) {
     const hoy = new Date();
     this.fechaMinima = hoy.toISOString().substring(0, 16);
   }
 
   agendarCita() {
+    // Validar que todos los campos estén completos antes de agendar la cita
+    if (
+      !this.cita.nombre ||
+      !this.cita.cedula ||
+      !this.cita.telefono ||
+      !this.cita.fechaHora ||
+      !this.cita.motivo
+    ) {
+      this.toastr.error('Por favor, completa todos los campos.', 'Error');
+      return;
+    }
+
     if (!this.validarFechaHora()) {
-      alert(
-        'La fecha y hora seleccionada no es válida. Por favor, elige otro horario.'
+      this.toastr.error(
+        'La fecha y hora seleccionada no es válida. Por favor, elige otro horario.',
+        'Error'
       );
       return;
     }
@@ -32,16 +50,17 @@ export class AgendarCitaComponent {
 
     this.citaService.agendarCita(this.cita).subscribe({
       next: (response) => {
-        alert('Cita agendada con éxito');
+        this.toastr.success('Cita agendada con éxito', 'Éxito');
         this.cita = new Cita(undefined, '', '', '', '', ''); // Limpiar formulario
       },
       error: (error) => {
         if (error.status === 409) {
-          alert(
-            'La fecha y hora seleccionada ya está ocupada. Por favor, elige otro horario.'
+          this.toastr.error(
+            'La fecha y hora seleccionada ya está ocupada. Por favor, elige otro horario.',
+            'Error'
           );
         } else {
-          alert('Error al agendar la cita');
+          this.toastr.error('Error al agendar la cita.', 'Error');
         }
       },
     });
@@ -49,23 +68,20 @@ export class AgendarCitaComponent {
 
   validarFechaHora(): boolean {
     const fechaHoraSeleccionada = new Date(this.cita.fechaHora);
-    const fechaHoraActual = new Date(); // Obtener la fecha y hora actual
+    const fechaHoraActual = new Date();
 
-    // Validar que la fecha seleccionada no sea anterior a la actual
     if (fechaHoraSeleccionada < fechaHoraActual) {
       return false;
     }
 
     const day = fechaHoraSeleccionada.getDay(); // 0: domingo, 1: lunes, ..., 6: sábado
-    const hour = fechaHoraSeleccionada.getHours(); // Obtener la hora local
-    const minutes = fechaHoraSeleccionada.getMinutes(); // Obtener los minutos locales
+    const hour = fechaHoraSeleccionada.getHours();
+    const minutes = fechaHoraSeleccionada.getMinutes();
 
-    // Restringir lunes (1), viernes (5) y domingo (0)
     if (day === 0 || day === 1 || day === 5) {
       return false;
     }
 
-    // Permitir solo martes (2), miércoles (3) y jueves (4) de 17:30 a 20:30 (5:30pm a 8:30pm) en hora local
     if (
       (day === 2 || day === 3 || day === 4 || day === 6) &&
       hour >= 17 &&
@@ -74,7 +90,6 @@ export class AgendarCitaComponent {
       return true;
     }
 
-    // Otros días no permitidos o fuera del horario permitido
     return false;
   }
 }

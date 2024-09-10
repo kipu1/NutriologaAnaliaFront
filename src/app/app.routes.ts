@@ -27,13 +27,12 @@ export const routes: Routes = [
   { path: 'servicios', component: ServiciosComponent },
   { path: 'lista-servicio', component: ListaServicioComponent },
   { path: 'crear-curso', component: CrearCursoComponent },
-  { path: 'ver-cursos', component: ListaCursosComponent },
+  { path: 'lista-cursos', component: ListaCursosComponent },
   {
     path: 'lista-citas',
     component: ListaCitasComponent,
     canActivate: [AuthGuard],
   }, // Solo si estás logueado
-  { path: 'lista-cursos', component: ListaCursosComponent },
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LocalStorageService } from '../../services/LocalStorageService';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +16,25 @@ import { LocalStorageService } from '../../services/LocalStorageService';
 export class LoginComponent {
   correo: string = ''; // Campo para el correo
   contrasena: string = ''; // Campo para la contraseña
-  errorMessage: string = ''; // Propiedad para almacenar el mensaje de error
 
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private toastr: ToastrService // Inyecta ToastrService
   ) {}
+
   login(correo: string, contrasena: string): void {
+    // Verificar si faltan los campos
     if (!correo || !contrasena) {
-      this.errorMessage = 'Por favor, ingresa el correo y la contraseña';
+      this.toastr.error(
+        'Por favor, ingresa el correo y la contraseña',
+        'Error'
+      );
       return;
     }
 
-    this.usuarioService.login(this.correo, this.contrasena).subscribe(
+    this.usuarioService.login(correo, contrasena).subscribe(
       (response) => {
         if (response && response.token) {
           // Guardar el token en el localStorage a través del servicio
@@ -37,17 +43,24 @@ export class LoginComponent {
           // Guardar la información del usuario en tu usuarioService
           this.usuarioService.setUsuarioInfo(response.nombre, response.token);
 
+          // Mostrar una notificación de éxito
+          this.toastr.success('Inicio de sesión exitoso', 'Éxito');
+
           // Redirigir al home después del login exitoso y recargar la página discretamente
           this.router.navigate(['/home']).then(() => {
             window.location.reload(); // Recarga la página después de redirigir
           });
         } else {
-          this.errorMessage =
-            'Error en la respuesta del servidor: falta el token';
+          // Si la respuesta no contiene el token, mostrar error
+          this.toastr.error(
+            'Error en la respuesta del servidor: falta el token',
+            'Error del servidor'
+          );
         }
       },
       (error) => {
-        this.errorMessage = 'Correo o contraseña incorrectos';
+        // Si hay un error en el login, mostrar alerta de error
+        this.toastr.error('Correo o contraseña incorrectos', 'Error');
         console.error('Error en el login', error);
       }
     );
