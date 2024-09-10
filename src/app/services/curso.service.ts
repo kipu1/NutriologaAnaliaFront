@@ -19,12 +19,13 @@ export class CursoService {
   }
   subirArchivo(selectedFile: File): Observable<any> {
     const formData = new FormData();
-    formData.append('file', selectedFile); // Archivo PDF
+    formData.append('file', selectedFile);
 
     return this.http.post(`${this.apiUrl}/subir-archivo`, formData, {
       headers: this.getHeaders(),
     });
   }
+
   verificarPassword(id: number, password: string): Observable<any> {
     const token = localStorage.getItem('token'); // Obtener el token JWT desde el localStorage
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

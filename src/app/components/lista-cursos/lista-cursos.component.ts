@@ -32,24 +32,22 @@ export class ListaCursosComponent implements OnInit {
   }
 
   mostrarModalPassword(cursoId: number): void {
-    // Aquí podrías mostrar un modal para introducir la contraseña
     const password = prompt('Introduce la contraseña para descargar el PDF');
     if (password) {
       this.verificarPassword(cursoId, password);
     }
   }
-
   verificarPassword(id: number, password: string): void {
     this.cursoService.verificarPassword(id, password).subscribe({
       next: (response) => {
         const pdfUrl = response.url;
-        window.open(`http://localhost:8080${pdfUrl}`, '_blank'); // Abrir el PDF en una nueva ventana
+        console.log('PDF URL:', pdfUrl); // Verifica si la URL es correcta
+        window.open(`http://localhost:8080${pdfUrl}`, '_blank'); // Asegúrate de que la URL sea correcta
       },
       error: (error) => {
         alert('Contraseña incorrecta');
       },
     });
   }
-
   // Verifica la contraseña ingresada
 }

@@ -1,15 +1,12 @@
 <div class="container">
   <div class="course-card" *ngFor="let curso of cursos">
     <div class="course-info">
-      <div *ngFor="let curso of cursos">
-        <h3>{{ curso.nombre }}</h3>
-        <p>{{ curso.descripcion }}</p>
-        <p><strong>Precio:</strong> {{ curso.precio }} USD</p>
-        <button
-          *ngIf="curso.id"
-          (click)="mostrarModalPassword(curso.id!)"
-        ></button>
-      </div>
+      <h3>{{ curso.nombre }}</h3>
+      <p>{{ curso.descripcion }}</p>
+      <p><strong>Precio:</strong> {{ curso.precio }} USD</p>
+      <button *ngIf="curso.id" (click)="mostrarModalPassword(curso.id!)">
+        Descargar PDF
+      </button>
     </div>
   </div>
 </div>
