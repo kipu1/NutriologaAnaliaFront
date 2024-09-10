@@ -14,40 +14,42 @@ import { CursoService } from '../../services/curso.service';
 })
 export class ListaCursosComponent implements OnInit {
   cursos: Curso[] = [];
-  passwordInput: string = ''; // Variable para la contraseña
 
   constructor(private cursoService: CursoService) {}
 
   ngOnInit(): void {
-    this.cursoService.getCursos().subscribe({
-      next: (cursos) => {
+    this.cursoService.listarCursos().subscribe(
+      (cursos) => {
         this.cursos = cursos;
-        console.log('Cursos obtenidos:', cursos); // Verifica la respuesta en la consola
       },
-      error: (error) => {
-        console.error('Error al obtener los cursos:', error);
-        alert('Error al obtener los cursos.');
-      },
-    });
+      (error) => {
+        console.error('Error al obtener la lista de cursos', error);
+      }
+    );
   }
-
-  mostrarModalPassword(cursoId: number): void {
-    const password = prompt('Introduce la contraseña para descargar el PDF');
-    if (password) {
-      this.verificarPassword(cursoId, password);
+  descargarCurso(curso: Curso): void {
+    if (curso.password) {
+      this.cursoService.descargarCurso(curso.id, curso.password).subscribe(
+        (response: Blob) => {
+          const a = document.createElement('a');
+          const objectUrl = URL.createObjectURL(response);
+          a.href = objectUrl;
+          a.download = curso.nombre; // El nombre del archivo para la descarga
+          a.click();
+          URL.revokeObjectURL(objectUrl);
+          curso.password = ''; // Reiniciar la contraseña después de descargar
+        },
+        (error) => {
+          if (error.status === 403) {
+            alert('Contraseña incorrecta');
+          } else {
+            alert('Error al descargar el archivo');
+          }
+          curso.password = ''; // Reiniciar la contraseña también en caso de error
+        }
+      );
+    } else {
+      alert('Por favor, ingrese la contraseña');
     }
   }
-  verificarPassword(id: number, password: string): void {
-    this.cursoService.verificarPassword(id, password).subscribe({
-      next: (response) => {
-        const pdfUrl = response.url;
-        console.log('PDF URL:', pdfUrl); // Verifica si la URL es correcta
-        window.open(`http://localhost:8080${pdfUrl}`, '_blank'); // Asegúrate de que la URL sea correcta
-      },
-      error: (error) => {
-        alert('Contraseña incorrecta');
-      },
-    });
-  }
-  // Verifica la contraseña ingresada
 }

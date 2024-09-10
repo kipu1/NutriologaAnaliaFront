@@ -30,6 +30,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
   }
+  getToken(): string | null {
+    return localStorage.getItem('token'); // Aquí se asume que el token se guarda en localStorage
+  }
   getCurrentUser(): Observable<any> {
     return this.currentUserSubject.asObservable();
   }

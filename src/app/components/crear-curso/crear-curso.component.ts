@@ -14,86 +14,50 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './crear-curso.component.scss',
 })
 export class CrearCursoComponent {
-  curso: Curso = {
-    nombre: '',
-    descripcion: '',
-    precio: '',
-    password: '',
-    archivoPdf: undefined,
-  };
-
+  nombre: string = '';
+  descripcion: string = '';
+  precio: string = '';
+  password: string = '';
   selectedFile: File | null = null;
 
-  constructor(
-    private cursoService: CursoService,
-    private toastr: ToastrService // Inyectar ToastrService para las alertas
-  ) {}
+  constructor(private cursoService: CursoService) {}
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
 
-  onSubmit(): void {
-    if (
-      !this.curso.nombre ||
-      !this.curso.descripcion ||
-      !this.curso.precio ||
-      !this.selectedFile
-    ) {
-      this.toastr.error(
-        'Por favor, completa todos los campos y selecciona un archivo PDF',
-        'Error'
+  crearCurso(): void {
+    if (this.nombre && this.descripcion && this.precio && this.selectedFile) {
+      const formData = new FormData();
+      formData.append('nombre', this.nombre);
+      formData.append('descripcion', this.descripcion);
+      formData.append('precio', this.precio);
+      formData.append('password', this.password || ''); // Password opcional
+      formData.append('file', this.selectedFile);
+
+      // Llamar al método del servicio que ahora incluye los headers
+      this.cursoService.crearCurso(formData).subscribe(
+        (response) => {
+          alert('Curso creado exitosamente');
+          this.limpiarFormulario();
+        },
+        (error) => {
+          alert('Error al crear el curso');
+        }
       );
-      return;
-    }
-
-    if (this.selectedFile) {
-      this.cursoService.subirArchivo(this.selectedFile).subscribe({
-        next: (response) => {
-          const pdfUrl = response.url;
-
-          const curso: Curso = {
-            nombre: this.curso.nombre,
-            descripcion: this.curso.descripcion,
-            precio: this.curso.precio,
-            password: this.curso.password,
-            pdfUrl: pdfUrl,
-          };
-
-          this.cursoService.crearCurso(curso).subscribe({
-            next: (curso) => {
-              this.toastr.success('Curso creado con éxito', 'Éxito');
-              this.resetForm(); // Limpiar el formulario después de éxito
-            },
-            error: (err) => {
-              this.toastr.error('Error al crear el curso', 'Error');
-              console.error('Error al crear curso:', err);
-            },
-          });
-        },
-        error: (err) => {
-          this.toastr.error('Error al subir el archivo PDF', 'Error');
-          console.error('Error al subir archivo:', err);
-        },
-      });
     } else {
-      this.toastr.error('Por favor, selecciona un archivo PDF', 'Error');
+      alert('Por favor, complete todos los campos y seleccione un archivo');
     }
   }
 
-  resetForm(): void {
-    // Restablecer los valores del formulario y archivo seleccionado
-    this.curso = {
-      nombre: '',
-      descripcion: '',
-      precio: '',
-      password: '',
-      archivoPdf: undefined,
-    };
-    this.selectedFile = null; // Limpiar el archivo seleccionado
+  limpiarFormulario(): void {
+    this.nombre = '';
+    this.descripcion = '';
+    this.precio = '';
+    this.password = '';
+    this.selectedFile = null;
   }
 }
-
 /*onSubmit(): void {
     if (this.selectedFile) {
       const formData = new FormData();

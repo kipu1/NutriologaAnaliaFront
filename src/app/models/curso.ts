@@ -1,9 +1,24 @@
-export interface Curso {
-  id?: number;
+export class Curso {
+  id: number;
   nombre: string;
   descripcion: string;
   precio: string;
+  fileUrl: string;
   password: string;
-  pdfUrl?: string; // Puedes almacenar la URL del archivo subido
-  archivoPdf?: File; // Este es el archivo que se va a subir
+
+  constructor(
+    id: number,
+    nombre: string,
+    descripcion: string,
+    precio: string,
+    fileUrl: string,
+    password: string
+  ) {
+    this.id = id;
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.precio = precio;
+    this.fileUrl = fileUrl;
+    this.password = password;
+  }
 }
