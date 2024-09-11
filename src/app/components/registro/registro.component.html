@@ -27,14 +27,14 @@
     </div>
 
     <div class="form-group">
-      <label for="correo">Telefono</label>
+      <label for="telefono">Teléfono</label>
       <input
         type="text"
         id="telefono"
         [(ngModel)]="telefono"
         name="telefono"
         required
-        placeholder="Introduce tu telefono"
+        placeholder="Introduce tu teléfono"
       />
     </div>
 
@@ -53,5 +53,5 @@
     <button type="submit" class="btn btn-primary">Registrarse</button>
   </form>
 
-  <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión aquí</a></p>
+  <p>¿Ya tienes una cuenta? <a (click)="irALogin()">Inicia sesión aquí</a></p>
 </div>

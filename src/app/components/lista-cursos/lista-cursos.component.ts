@@ -14,22 +14,25 @@ import { CursoService } from '../../services/curso.service';
 })
 export class ListaCursosComponent implements OnInit {
   cursos: Curso[] = [];
+  passwords: string[] = []; // Para almacenar las contraseñas temporalmente
 
   constructor(private cursoService: CursoService) {}
 
   ngOnInit(): void {
-    this.cursoService.listarCursos().subscribe(
-      (cursos) => {
-        this.cursos = cursos;
-      },
-      (error) => {
-        console.error('Error al obtener la lista de cursos', error);
-      }
-    );
+    this.cargarCursos();
   }
-  descargarCurso(curso: Curso): void {
-    if (curso.password) {
-      this.cursoService.descargarCurso(curso.id, curso.password).subscribe(
+
+  cargarCursos(): void {
+    this.cursoService.listarCursos().subscribe((data) => {
+      this.cursos = data;
+      this.passwords = new Array(this.cursos.length); // Inicializa el array para las contraseñas
+    });
+  }
+
+  descargarCurso(curso: Curso, index: number): void {
+    const password = this.passwords[index]; // Obtiene la contraseña temporal
+    if (password) {
+      this.cursoService.descargarCurso(curso.id, password).subscribe(
         (response: Blob) => {
           const a = document.createElement('a');
           const objectUrl = URL.createObjectURL(response);
@@ -37,7 +40,7 @@ export class ListaCursosComponent implements OnInit {
           a.download = curso.nombre; // El nombre del archivo para la descarga
           a.click();
           URL.revokeObjectURL(objectUrl);
-          curso.password = ''; // Reiniciar la contraseña después de descargar
+          this.passwords[index] = ''; // Limpia la contraseña después de la descarga
         },
         (error) => {
           if (error.status === 403) {
@@ -45,7 +48,6 @@ export class ListaCursosComponent implements OnInit {
           } else {
             alert('Error al descargar el archivo');
           }
-          curso.password = ''; // Reiniciar la contraseña también en caso de error
         }
       );
     } else {

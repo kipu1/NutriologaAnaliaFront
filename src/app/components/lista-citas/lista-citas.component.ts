@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import dayGridPlugin from '@fullcalendar/daygrid'; // Correcto plugin
 import interactionPlugin from '@fullcalendar/interaction'; // Correcto plugin
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-citas',
@@ -23,7 +24,11 @@ export class ListaCitasComponent implements OnInit {
   mostrarModal: boolean = false; // Estado del modal
   citaSeleccionada: Cita | null = null; // Cita seleccionada
 
-  constructor(private citaService: CitaService, private router: Router) {}
+  constructor(
+    private citaService: CitaService,
+    private router: Router,
+    private toastr: ToastrService // Inyectar ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.obtenerCitas();
@@ -36,7 +41,7 @@ export class ListaCitasComponent implements OnInit {
       plugins: [dayGridPlugin, interactionPlugin],
       events: [],
       dateClick: this.handleDateClick.bind(this),
-      eventClick: this.handleEventClick.bind(this), // Asegúrate de que esto está correctamente vinculado
+      eventClick: this.handleEventClick.bind(this),
     };
   }
 
@@ -65,8 +70,10 @@ export class ListaCitasComponent implements OnInit {
         this.citas = response;
         this.citasFiltradas = response;
         this.convertirCitasAEventos();
+        this.toastr.success('Citas cargadas con éxito', 'Éxito'); // Notificación de éxito
       },
       error: (error) => {
+        this.toastr.error('Error al obtener citas', 'Error'); // Notificación de error
         console.error('Error al obtener citas:', error);
       },
     });
@@ -89,17 +96,15 @@ export class ListaCitasComponent implements OnInit {
     if (confirm('¿Estás seguro de que deseas eliminar esta cita?')) {
       this.citaService.eliminarCita(id).subscribe({
         next: () => {
-          alert('Cita eliminada con éxito');
+          this.toastr.success('Cita eliminada con éxito', 'Éxito'); // Notificación de éxito
           this.obtenerCitas();
           this.cerrarModal(); // Cierra el modal después de eliminar
         },
         error: (error) => {
+          this.toastr.error('Error al eliminar la cita', 'Error'); // Notificación de error
           console.error('Error al eliminar la cita:', error);
         },
       });
     }
   }
 }
-// Editar una cita (preparar para actualizar)
-
-// Actualizar una cita

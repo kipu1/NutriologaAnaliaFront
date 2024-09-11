@@ -16,7 +16,7 @@ import { CrearCursoComponent } from './components/crear-curso/crear-curso.compon
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'loginana', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'agendar-cita', component: AgendarCitaComponent },
   { path: 'home', component: HomeComponent },

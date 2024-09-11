@@ -20,7 +20,10 @@ export class CrearCursoComponent {
   password: string = '';
   selectedFile: File | null = null;
 
-  constructor(private cursoService: CursoService) {}
+  constructor(
+    private cursoService: CursoService,
+    private toastr: ToastrService
+  ) {} // Inyectar ToastrService
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
@@ -38,15 +41,18 @@ export class CrearCursoComponent {
       // Llamar al método del servicio que ahora incluye los headers
       this.cursoService.crearCurso(formData).subscribe(
         (response) => {
-          alert('Curso creado exitosamente');
+          this.toastr.success('Curso creado exitosamente', 'Éxito'); // Reemplazar alert con Toastr
           this.limpiarFormulario();
         },
         (error) => {
-          alert('Error al crear el curso');
+          this.toastr.error('Error al crear el curso', 'Error'); // Reemplazar alert con Toastr
         }
       );
     } else {
-      alert('Por favor, complete todos los campos y seleccione un archivo');
+      this.toastr.error(
+        'Por favor, complete todos los campos y seleccione un archivo',
+        'Error'
+      ); // Reemplazar alert con Toastr
     }
   }
 

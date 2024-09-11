@@ -49,7 +49,7 @@ export class RegistroComponent {
     this.usuarioService.registro(usuario).subscribe(
       (response) => {
         this.toastr.success('Registro exitoso', 'Éxito');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/loginana']);
       },
       (error) => {
         if (error.status === 403) {
@@ -71,5 +71,8 @@ export class RegistroComponent {
         console.error('Error en el registro', error);
       }
     );
+  }
+  irALogin() {
+    this.router.navigate(['/loginana']); // Redirige al usuario al componente de login
   }
 }

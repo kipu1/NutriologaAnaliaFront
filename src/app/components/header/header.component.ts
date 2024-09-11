@@ -46,7 +46,7 @@ export class HeaderComponent {
   }
 
   goToLogin(): void {
-    this.router.navigate(['/login']).then(() => {
+    this.router.navigate(['/loginana']).then(() => {
       window.location.reload(); // Recarga la página después de redirigir
     });
   }

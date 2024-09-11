@@ -1,19 +1,26 @@
-<div *ngFor="let curso of cursos" class="curso-card">
-  <h2>{{ curso.nombre }}</h2>
-  <p>{{ curso.descripcion }}</p>
-  <p>Precio: {{ curso.precio }}</p>
+<div class="cursos-container">
+  <div *ngFor="let curso of cursos; let i = index" class="curso-card">
+    <h2>{{ curso.nombre }}</h2>
+    <p>{{ curso.descripcion }}</p>
+    <p>Precio: {{ curso.precio }}</p>
 
-  <!-- Muestra la URL del archivo subido -->
-  <p>
-    Archivo subido:
-    <a [href]="curso.fileUrl" target="_blank">{{ curso.fileUrl }}</a>
-  </p>
+    <!-- Muestra solo el nombre del archivo, no la ruta completa -->
+    <p>
+      Archivo subido:
+      <a [href]="curso.fileUrl" target="_blank">{{
+        curso.fileUrl.split("/").pop()
+      }}</a>
+    </p>
 
-  <input
-    type="password"
-    [(ngModel)]="curso.password"
-    placeholder="Ingrese la contraseña"
-  />
+    <input
+      type="password"
+      [(ngModel)]="passwords[i]"
+      placeholder="Ingrese la contraseña"
+      class="input-password"
+    />
 
-  <button (click)="descargarCurso(curso)">Descargar Archivo</button>
+    <button (click)="descargarCurso(curso, i)" class="btn-descargar">
+      Descargar Archivo
+    </button>
+  </div>
 </div>

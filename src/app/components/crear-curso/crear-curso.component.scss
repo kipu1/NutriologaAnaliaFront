@@ -1,23 +1,66 @@
 .form-container {
-  max-width: 600px;
+  background-color: #1f1f1f;
+  padding: 30px;
+  border-radius: 10px;
+  width: 350px;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  text-align: center;
+}
+
+h2 {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
 form div {
   margin-bottom: 15px;
+  text-align: left;
 }
 
 label {
+  color: #ffffff;
+  font-size: 14px;
   display: block;
   margin-bottom: 5px;
 }
 
-input,
+input[type="text"],
+input[type="password"],
+input[type="file"],
 textarea {
   width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #00b894;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #019873;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #888;
+}
+
+input[type="file"] {
+  color: #fff;
 }
