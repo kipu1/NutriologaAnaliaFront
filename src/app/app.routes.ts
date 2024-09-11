@@ -20,19 +20,36 @@ export const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'agendar-cita', component: AgendarCitaComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'servicios', component: ServiciosComponent },
   { path: 'conoceme', component: ConocemeComponent },
-  { path: 'historia-clinica', component: HistoriaClinicaComponent },
-  { path: 'perfil', component: PerfilComponent },
-  { path: 'servicios', component: ServiciosComponent },
-  { path: 'lista-servicio', component: ListaServicioComponent },
-  { path: 'crear-curso', component: CrearCursoComponent },
   { path: 'lista-cursos', component: ListaCursosComponent },
+  { path: 'lista-servicio', component: ListaServicioComponent },
+
+  // Rutas protegidas (requieren estar logueado)
+  {
+    path: 'servicios',
+    component: ServiciosComponent,
+    canActivate: [AuthGuard], // Protegida
+  },
+  {
+    path: 'historia-clinica',
+    component: HistoriaClinicaComponent,
+    canActivate: [AuthGuard], // Protegida
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent,
+    canActivate: [AuthGuard], // Protegida
+  },
+  {
+    path: 'crear-curso',
+    component: CrearCursoComponent,
+    canActivate: [AuthGuard], // Protegida
+  },
   {
     path: 'lista-citas',
     component: ListaCitasComponent,
-    canActivate: [AuthGuard],
-  }, // Solo si estás logueado
+    canActivate: [AuthGuard], // Protegida
+  },
 ];
 
 @NgModule({

@@ -120,7 +120,9 @@ export class UsuarioService {
 
   // Limpiar localStorage al cerrar sesión
   logout(): void {
-    localStorage.clear();
+    localStorage.clear(); // Limpiar toda la información del localStorage
+    // Redireccionar al usuario a la página de login o home
+    window.location.href = '/home'; // Cambia esta ruta a la página que prefieras
   }
 
   // Obtener token del localStorage

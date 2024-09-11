@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+/*import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
@@ -26,7 +26,7 @@ export class AuthService {
   /* logout(): void {
     this.currentUserSubject.next(null);
    / Implementar lógica adicional si es necesario
-  }*/
+  }
   logout() {
     localStorage.removeItem('token');
   }
@@ -41,3 +41,4 @@ export class AuthService {
     return this.currentUserSubject.value != null;
   }
 }
+*/

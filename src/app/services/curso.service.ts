@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Curso } from '../models/curso';
-import { AuthService } from './AuthService.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +9,7 @@ import { AuthService } from './AuthService.service';
 export class CursoService {
   private baseUrl = 'http://localhost:8080/api/cursos';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient) {}
 
   crearCurso(curso: FormData): Observable<Curso> {
     const token = localStorage.getItem('token'); // Obtener el token JWT desde el localStorage
