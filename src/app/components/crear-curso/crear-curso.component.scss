@@ -33,14 +33,14 @@ textarea {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #333;
-  color: #fff;
+  background-color: #333; /* Fondo oscuro */
+  color: #fff; /* Texto blanco */
+  font-weight: bold; /* Negrita */
 }
 
 textarea {
   resize: none;
 }
-
 button {
   width: 100%;
   padding: 10px;
