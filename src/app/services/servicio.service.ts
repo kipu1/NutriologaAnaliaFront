@@ -32,6 +32,14 @@ export class ServicioService {
     );
   }
 
+  // Método para eliminar un servicio
+  eliminarServicio(id: number): Observable<void> {
+    const token = localStorage.getItem('token'); // Obtener el token JWT desde el localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Establecer encabezados con el token
+
+    return this.http.delete<void>(`${this.apiUrl}/eliminar/${id}`, { headers });
+  }
+
   // Método para listar servicios
   listarServicios(): Observable<Servicio[]> {
     const token = localStorage.getItem('token');
@@ -41,10 +49,4 @@ export class ServicioService {
   }
 
   // Método para eliminar un servicio
-  eliminarServicio(id: number): Observable<void> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    return this.http.delete<void>(`${this.apiUrl}/eliminar/${id}`, { headers });
-  }
 }

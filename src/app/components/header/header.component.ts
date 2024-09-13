@@ -93,4 +93,7 @@ export class HeaderComponent {
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
+  serviciosver(): void {
+    this.router.navigate(['/ver-lista-servicio']);
+  }
 }

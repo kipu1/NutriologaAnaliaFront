@@ -1,0 +1,46 @@
+<div class="servicios-container">
+  <div *ngFor="let servicio of servicios; let i = index" class="servicio-card">
+    <h2>{{ servicio.titulo }}</h2>
+    <p>{{ servicio.descripcion }}</p>
+
+    <!-- Botón para contactar por WhatsApp -->
+
+    <!-- Botón de Actualizar -->
+    <button (click)="abrirModalActualizar(servicio)" class="btn-actualizar">
+      Actualizar
+    </button>
+
+    <!-- Botón de Eliminar -->
+    <button (click)="eliminarServicio(servicio.id)" class="btn-eliminar">
+      Eliminar
+    </button>
+  </div>
+</div>
+
+<!-- Modal de Actualización -->
+<div *ngIf="servicioSeleccionado" class="modal">
+  <h2>Actualizar Servicio</h2>
+
+  <form (ngSubmit)="actualizarServicio()">
+    <label for="titulo">Título:</label>
+    <input
+      type="text"
+      [(ngModel)]="servicioSeleccionado.titulo"
+      name="titulo"
+    />
+
+    <label for="descripcion">Descripción:</label>
+    <input
+      type="text"
+      [(ngModel)]="servicioSeleccionado.descripcion"
+      name="descripcion"
+    />
+
+    <button type="submit" class="btn-guardar">Guardar</button>
+
+    <!-- Botón de Cancelar -->
+    <button type="button" (click)="cerrarModal()" class="btn-cancelar">
+      Cancelar
+    </button>
+  </form>
+</div>
