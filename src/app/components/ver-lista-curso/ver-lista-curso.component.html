@@ -1,39 +1,40 @@
-<div class="cursos-container">
-  <div *ngFor="let curso of cursos; let i = index" class="curso-card">
-    <h2>{{ curso.nombre }}</h2>
-    <p>{{ curso.descripcion }}</p>
-    <p>Precio: {{ curso.precio }}</p>
+<div class="cursos-lista-container">
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Archivo</th>
+        <th style="width: 100px">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let curso of cursos; let i = index">
+        <td>{{ curso.nombre }}</td>
+        <td>{{ curso.descripcion }}</td>
+        <td>{{ curso.precio }}</td>
+        <td>
+          <a [href]="curso.fileUrl" target="_blank">{{
+            curso.fileUrl.split("/").pop()
+          }}</a>
+        </td>
 
-    <!-- Muestra solo el nombre del archivo, no la ruta completa -->
-    <p>
-      Archivo subido:
-      <a [href]="curso.fileUrl" target="_blank">{{
-        curso.fileUrl.split("/").pop()
-      }}</a>
-    </p>
+        <td>
+          <!-- Botón de Descargar -->
 
-    <input
-      type="password"
-      [(ngModel)]="passwords[i]"
-      [type]="passwordVisible[i] ? 'text' : 'password'"
-      placeholder="Ingrese la contraseña"
-      class="input-password"
-    />
-
-    <button (click)="descargarCurso(curso, i)" class="btn-descargar">
-      Descargar Archivo
-    </button>
-
-    <!-- Botón de Actualizar -->
-    <button (click)="abrirModalActualizar(curso)" class="btn-actualizar">
-      Actualizar
-    </button>
-
-    <!-- Botón de Eliminar -->
-    <button (click)="eliminarCurso(curso.id)" class="btn-eliminar">
-      Eliminar
-    </button>
-  </div>
+          <!-- Botón de Actualizar -->
+          <button (click)="abrirModalActualizar(curso)" class="btn-actualizar">
+            Actualizar
+          </button>
+          <!-- Botón de Eliminar -->
+          <button (click)="eliminarCurso(curso.id)" class="btn-eliminar">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <!-- Modal de Actualización -->

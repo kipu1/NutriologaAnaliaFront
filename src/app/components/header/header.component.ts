@@ -93,6 +93,10 @@ export class HeaderComponent {
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
+  closeDropdown() {
+    this.isDropdownOpen = false; // Cierra el menú desplegable
+  }
+
   serviciosver(): void {
     this.router.navigate(['/ver-lista-servicio']);
   }

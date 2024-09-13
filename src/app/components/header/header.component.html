@@ -23,18 +23,22 @@
               Opciones adicionales <span>&#x25BC;</span>
             </button>
             <div class="dropdown-content" *ngIf="isDropdownOpen">
-              <button class="btn" (click)="goToListaCitas()">
+              <button class="btn" (click)="goToListaCitas(); closeDropdown()">
                 Lista de Citas
               </button>
-              <button class="btn" (click)="goToAgregarCurso()">
+              <button class="btn" (click)="goToAgregarCurso(); closeDropdown()">
                 Agregar Curso
               </button>
-              <button class="btn" (click)="servicios()">Crear Servicios</button>
-              <button class="btn" (click)="historia()">Historia Clínica</button>
-              <button class="btn" (click)="Cursover()">
+              <button class="btn" (click)="servicios(); closeDropdown()">
+                Crear Servicios
+              </button>
+              <button class="btn" (click)="historia(); closeDropdown()">
+                Historia Clínica
+              </button>
+              <button class="btn" (click)="Cursover(); closeDropdown()">
                 Administrar cursos
               </button>
-              <button class="btn" (click)="serviciosver()">
+              <button class="btn" (click)="serviciosver(); closeDropdown()">
                 Administrar servicios
               </button>
             </div>

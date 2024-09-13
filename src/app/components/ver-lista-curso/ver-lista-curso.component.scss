@@ -1,83 +1,71 @@
-.cursos-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 20px;
-}
-
-.curso-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.curso-card:hover {
-  transform: translateY(-5px);
-}
-
-.curso-card h2 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.curso-card p {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.curso-card .input-password {
-  width: 100%;
+.cursos-lista-container {
   padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 15px;
-  font-size: 1rem;
-}
-
-.curso-card .btn-descargar,
-.curso-card .btn-actualizar,
-.curso-card .btn-eliminar {
   width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  margin-top: 5px;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
 }
 
-.curso-card .btn-descargar {
-  background-color: #4caf50;
+.styled-table {
+  width: 80%; /* Reduce el ancho de la tabla */
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* Centrar la tabla y reducir su margen */
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 8px 10px; /* Reduce el padding */
+  text-align: center; /* Centrar todo el contenido de las celdas */
+  max-width: 150px; /* Reduce el ancho máximo de las celdas */
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.styled-table th {
+  background-color: #007bff;
   color: white;
+  font-weight: bold;
+  text-align: center; /* Asegura que los títulos estén centrados */
+  font-size: 0.9rem; /* Reduce el tamaño del texto en los encabezados */
 }
 
-.curso-card .btn-actualizar {
+.styled-table td {
+  background-color: #f4f6f9;
+  color: #333;
+  font-size: 0.9rem; /* Reduce el tamaño del texto en las celdas */
+}
+
+.styled-table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.styled-table td .btn-actualizar,
+.styled-table td .btn-eliminar {
+  padding: 5px 8px; /* Reduce el padding de los botones */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 0.8rem; /* Reduce el tamaño del texto en los botones */
+  width: 70px; /* Ajusta el ancho de los botones */
+  display: inline-block; /* Asegura que los botones estén alineados en la misma línea */
+}
+
+.btn-actualizar {
   background-color: #2196f3;
   color: white;
 }
 
-.curso-card .btn-eliminar {
+.btn-eliminar {
   background-color: #f44336;
   color: white;
 }
 
-.curso-card .btn-descargar:hover {
-  background-color: #45a049;
-}
-
-.curso-card .btn-actualizar:hover {
+.btn-actualizar:hover {
   background-color: #0b7dda;
 }
 
-.curso-card .btn-eliminar:hover {
+.btn-eliminar:hover {
   background-color: #e53935;
 }
 
@@ -90,69 +78,69 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 400px;
+  width: 300px; /* Reduce el tamaño del modal */
   max-width: 100%;
-  padding: 20px;
+  padding: 15px; /* Reduce el padding del modal */
   z-index: 1000;
-}
 
-.modal h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
+  h2 {
+    font-size: 1.2rem; /* Reduce el tamaño del título del modal */
+    margin-bottom: 15px;
+  }
 
-.modal form {
-  display: flex;
-  flex-direction: column;
-}
+  form {
+    display: flex;
+    flex-direction: column;
 
-.modal label {
-  font-size: 1rem;
-  margin-bottom: 5px;
-  color: #333;
-}
+    label {
+      font-size: 0.9rem; /* Reduce el tamaño del texto en las etiquetas */
+      margin-bottom: 5px;
+      color: #333;
+    }
 
-.modal input[type="text"],
-.modal input[type="number"],
-.modal input[type="password"],
-.modal input[type="file"] {
-  padding: 10px;
-  font-size: 1rem;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  width: 100%;
-}
+    input[type="text"],
+    input[type="number"],
+    input[type="password"],
+    input[type="file"] {
+      padding: 8px;
+      font-size: 0.9rem; /* Reduce el tamaño de los campos del formulario */
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      width: 100%;
+    }
 
-.modal .btn-guardar {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  transition: background-color 0.3s ease;
-}
+    .btn-guardar {
+      background-color: #4caf50;
+      color: white;
+      padding: 8px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: background-color 0.3s ease;
 
-.modal .btn-guardar:hover {
-  background-color: #45a049;
-}
+      &:hover {
+        background-color: #45a049;
+      }
+    }
 
-.modal .btn-cancelar {
-  background-color: #f44336;
-  color: white;
-  padding: 10px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    .btn-cancelar {
+      background-color: #f44336;
+      color: white;
+      padding: 8px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
 
-.modal .btn-cancelar:hover {
-  background-color: #e53935;
+      &:hover {
+        background-color: #e53935;
+      }
+    }
+  }
 }
 
 /* Estilos de fondo para el modal */

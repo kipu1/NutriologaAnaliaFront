@@ -1,87 +1,100 @@
-.servicio-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+.servicios-container {
   padding: 20px;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  background-color: #f8f9fa;
+  max-width: 1000px; /* Limitar el ancho de la tabla */
+  margin: 0 auto; /* Centrar la tabla en la página */
 }
 
-.servicio-card:hover {
-  transform: translateY(-5px);
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.servicio-card h2 {
-  font-size: 1.5rem;
+.table-header h2 {
   color: #333;
-  margin-bottom: 10px;
+  font-size: 1.8rem;
 }
 
-.servicio-card p {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.servicio-card .btn-whatsapp,
-.servicio-card .btn-actualizar,
-.servicio-card .btn-eliminar {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
+.table-header .actions button {
+  background-color: #4caf50;
+  color: white;
   border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top: 5px;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+  margin-left: 10px;
 }
 
-.servicio-card .btn-whatsapp {
-  background-color: #25d366;
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  text-align: left;
+  max-width: 300px; /* Ancho máximo de celdas para mantener uniformidad */
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.styled-table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.styled-table td {
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.styled-table td .btn-actualizar,
+.styled-table td .btn-eliminar {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px; /* Añadir espacio entre botones */
+}
+
+.btn-actualizar {
+  background-color: #007bff;
   color: white;
 }
 
-.servicio-card .btn-actualizar {
-  background-color: #2196f3;
+.btn-eliminar {
+  background-color: #dc3545;
   color: white;
 }
 
-.servicio-card .btn-eliminar {
-  background-color: #f44336;
-  color: white;
+.styled-table td:last-child {
+  text-align: center;
+  width: 150px; /* Ancho fijo para la columna de botones */
 }
 
-.servicio-card .btn-whatsapp:hover {
-  background-color: #1ebc57;
-}
-
-.servicio-card .btn-actualizar:hover {
-  background-color: #0b7dda;
-}
-
-.servicio-card .btn-eliminar:hover {
-  background-color: #e53935;
-}
-
-/* Estilos para el modal de actualización */
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
   width: 400px;
-  max-width: 100%;
-  padding: 20px;
   z-index: 1000;
-}
-
-.modal h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
 }
 
 .modal form {
@@ -89,49 +102,9 @@
   flex-direction: column;
 }
 
-.modal label {
-  font-size: 1rem;
-  margin-bottom: 5px;
-  color: #333;
-}
-
-.modal input[type="text"],
-.modal input[type="number"],
-.modal input[type="password"],
-.modal input[type="file"] {
+.modal input {
   padding: 10px;
-  font-size: 1rem;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  border: 1px solid #ddd;
-  width: 100%;
-}
-
-.modal .btn-guardar {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 10px; /* Espacio entre los botones */
-}
-
-.modal .btn-cancelar {
-  background-color: #f44336;
-  color: white;
-  padding: 10px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.modal .btn-guardar:hover {
-  background-color: #45a049;
-}
-
-.modal .btn-cancelar:hover {
-  background-color: #e53935;
 }

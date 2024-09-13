@@ -4,13 +4,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #0c7e37;
+  background-color: #3ae27a;
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-left .logo {
-  width: 200px;
+  width: 270px;
   height: auto;
 }
 
@@ -98,6 +98,7 @@
     text-align: center;
   }
 }
+
 /* Estilos del menú desplegable */
 .dropdown {
   position: relative;
@@ -110,7 +111,8 @@
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 9999; /* Mantiene el desplegable por encima de cualquier otro contenido */
+  margin-top: 10px; /* Aumenta el margen para evitar que los botones se solapen */
 }
 
 .dropdown-content .btn {
@@ -126,4 +128,10 @@
 
 .dropdown.open .dropdown-content {
   display: block;
+}
+
+/* Asegura que los elementos desplegables no se superpongan */
+.dropdown-content .btn {
+  width: 100%;
+  box-sizing: border-box;
 }
