@@ -16,13 +16,22 @@ export class VerListaCursoComponent {
   passwords: string[] = [];
   cursoSeleccionado: Curso | null = null; // Para manejar el curso que se va a actualizar
   archivoSeleccionado: File | null = null; // Para almacenar el archivo seleccionado
-
+  passwordVisible: boolean[] = []; // Para controlar la visibilidad de la contraseña en la lista de cursos
+  passwordVisibleModal: boolean = false;
   constructor(private cursoService: CursoService) {}
 
   ngOnInit(): void {
     this.cargarCursos();
   }
+  // Alternar visibilidad de la contraseña en la lista
+  togglePasswordVisibility(index: number): void {
+    this.passwordVisible[index] = !this.passwordVisible[index];
+  }
 
+  // Alternar visibilidad de la contraseña en el modal
+  togglePasswordVisibilityModal(): void {
+    this.passwordVisibleModal = !this.passwordVisibleModal;
+  }
   cargarCursos(): void {
     this.cursoService.listarCursos().subscribe((data) => {
       this.cursos = data;
