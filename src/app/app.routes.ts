@@ -13,6 +13,7 @@ import { HistoriaClinicaComponent } from './components/historia-clinica/historia
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ListaServicioComponent } from './components/lista-servicio/lista-servicio.component';
 import { CrearCursoComponent } from './components/crear-curso/crear-curso.component';
+import { VerListaCursoComponent } from './components/ver-lista-curso/ver-lista-curso.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -48,6 +49,11 @@ export const routes: Routes = [
   {
     path: 'lista-citas',
     component: ListaCitasComponent,
+    canActivate: [AuthGuard], // Protegida
+  },
+  {
+    path: 'ver-lista-curso',
+    component: VerListaCursoComponent,
     canActivate: [AuthGuard], // Protegida
   },
 ];

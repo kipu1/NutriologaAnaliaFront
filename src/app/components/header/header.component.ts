@@ -84,4 +84,7 @@ export class HeaderComponent {
   conoceme(): void {
     this.router.navigate(['/conoceme']);
   }
+  Cursover(): void {
+    this.router.navigate(['/ver-lista-curso']);
+  }
 }

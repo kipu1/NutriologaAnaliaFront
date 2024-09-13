@@ -1,0 +1,72 @@
+<div class="cursos-container">
+  <div *ngFor="let curso of cursos; let i = index" class="curso-card">
+    <h2>{{ curso.nombre }}</h2>
+    <p>{{ curso.descripcion }}</p>
+    <p>Precio: {{ curso.precio }}</p>
+
+    <!-- Muestra solo el nombre del archivo, no la ruta completa -->
+    <p>
+      Archivo subido:
+      <a [href]="curso.fileUrl" target="_blank">{{
+        curso.fileUrl.split("/").pop()
+      }}</a>
+    </p>
+
+    <input
+      type="password"
+      [(ngModel)]="passwords[i]"
+      placeholder="Ingrese la contraseña"
+      class="input-password"
+    />
+
+    <button (click)="descargarCurso(curso, i)" class="btn-descargar">
+      Descargar Archivo
+    </button>
+
+    <!-- Botón de Actualizar -->
+    <button (click)="abrirModalActualizar(curso)" class="btn-actualizar">
+      Actualizar
+    </button>
+
+    <!-- Botón de Eliminar -->
+    <button (click)="eliminarCurso(curso.id)" class="btn-eliminar">
+      Eliminar
+    </button>
+  </div>
+</div>
+
+<!-- Modal de Actualización -->
+<div *ngIf="cursoSeleccionado" class="modal">
+  <h2>Actualizar Curso</h2>
+
+  <form (ngSubmit)="actualizarCurso()" enctype="multipart/form-data">
+    <label for="nombre">Nombre:</label>
+    <input type="text" [(ngModel)]="cursoSeleccionado.nombre" name="nombre" />
+
+    <label for="descripcion">Descripción:</label>
+    <input
+      type="text"
+      [(ngModel)]="cursoSeleccionado.descripcion"
+      name="descripcion"
+    />
+
+    <label for="precio">Precio:</label>
+    <input type="number" [(ngModel)]="cursoSeleccionado.precio" name="precio" />
+
+    <label for="password">Contraseña:</label>
+    <input
+      type="password"
+      [(ngModel)]="cursoSeleccionado.password"
+      name="password"
+    />
+
+    <!-- Campo para seleccionar un archivo -->
+    <label for="file">Actualizar Archivo:</label>
+    <input type="file" (change)="onFileSelected($event)" />
+
+    <button type="submit" class="btn-guardar">Guardar</button>
+    <button type="button" (click)="cerrarModal()" class="btn-cancelar">
+      Cancelar
+    </button>
+  </form>
+</div>

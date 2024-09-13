@@ -29,4 +29,26 @@ export class CursoService {
       responseType: 'blob', // Esto es importante para descargar archivos binarios
     });
   }
+  actualizarCurso(id: number, curso: FormData): Observable<Curso> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found');
+      return throwError('No token found');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<Curso>(`${this.baseUrl}/actualizar/${id}`, curso, {
+      headers,
+    });
+  }
+
+  // Método para eliminar un curso
+  eliminarCurso(id: number): Observable<void> {
+    const token = localStorage.getItem('token'); // Obtener el token JWT desde el localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Establecer encabezados con el token
+
+    return this.http.delete<void>(`${this.baseUrl}/eliminar/${id}`, {
+      headers,
+    });
+  }
 }
