@@ -17,16 +17,6 @@
   font-size: 1.8rem;
 }
 
-.table-header .actions button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
 .styled-table {
   width: 100%;
   border-collapse: collapse;
@@ -36,8 +26,8 @@
 .styled-table th,
 .styled-table td {
   padding: 12px 15px;
-  text-align: left;
-  max-width: 300px; /* Ancho máximo de celdas para mantener uniformidad */
+  text-align: center; /* Centrar todo el contenido */
+  max-width: 300px; /* Limitar el ancho máximo de las celdas */
   word-wrap: break-word;
   white-space: nowrap;
   overflow: hidden;
@@ -54,19 +44,22 @@
 .styled-table td {
   background-color: #f4f6f9;
   color: #333;
+  vertical-align: middle; /* Centrar verticalmente los contenidos */
 }
 
 .styled-table tbody tr:hover {
   background-color: #e9ecef;
 }
 
+/* Alineación de los botones en la columna de acciones */
 .styled-table td .btn-actualizar,
 .styled-table td .btn-eliminar {
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 5px; /* Añadir espacio entre botones */
+  margin-right: 5px;
+  width: 80px; /* Fijar ancho para uniformidad */
 }
 
 .btn-actualizar {
@@ -81,7 +74,7 @@
 
 .styled-table td:last-child {
   text-align: center;
-  width: 150px; /* Ancho fijo para la columna de botones */
+  width: 200px; /* Fijar ancho para la columna de acciones */
 }
 
 .modal {
