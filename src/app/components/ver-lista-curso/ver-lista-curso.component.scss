@@ -1,0 +1,167 @@
+.cursos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.curso-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.curso-card:hover {
+  transform: translateY(-5px);
+}
+
+.curso-card h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.curso-card p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.curso-card .input-password {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.curso-card .btn-descargar,
+.curso-card .btn-actualizar,
+.curso-card .btn-eliminar {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.curso-card .btn-descargar {
+  background-color: #4caf50;
+  color: white;
+}
+
+.curso-card .btn-actualizar {
+  background-color: #2196f3;
+  color: white;
+}
+
+.curso-card .btn-eliminar {
+  background-color: #f44336;
+  color: white;
+}
+
+.curso-card .btn-descargar:hover {
+  background-color: #45a049;
+}
+
+.curso-card .btn-actualizar:hover {
+  background-color: #0b7dda;
+}
+
+.curso-card .btn-eliminar:hover {
+  background-color: #e53935;
+}
+
+/* Estilos para el modal de actualización */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  max-width: 100%;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.modal input[type="text"],
+.modal input[type="number"],
+.modal input[type="password"],
+.modal input[type="file"] {
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.modal .btn-guardar {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.modal .btn-guardar:hover {
+  background-color: #45a049;
+}
+
+.modal .btn-cancelar {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal .btn-cancelar:hover {
+  background-color: #e53935;
+}
+
+/* Estilos de fondo para el modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

@@ -13,6 +13,9 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   isLoggedIn: boolean = false;
   nombreUsuario: string | null = '';
+  // Cambia según el estado de autenticación real
+  isDropdownOpen = false; // Estado del menú desplegable
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -86,5 +89,8 @@ export class HeaderComponent {
   }
   Cursover(): void {
     this.router.navigate(['/ver-lista-curso']);
+  }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 }
