@@ -7,12 +7,13 @@ import {
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Usuario } from '../models/usuario';
 import { LoginRequest } from '../models/LoginRequest';
+import { environment } from '../environment/environment.pro';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:8080/api/usuarios';
+  private apiUrl = environment.apiUrl + '/usuarios';
 
   constructor(private http: HttpClient) {}
   login(correo: string, contrasena: string): Observable<any> {
