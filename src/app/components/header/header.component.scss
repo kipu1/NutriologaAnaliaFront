@@ -4,40 +4,41 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #3ae27a;
+  background-color: #0a9396; /* Cambiar a un verde más profesional */
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-left .logo {
-  width: 270px;
+  width: 250px; /* Un poco más pequeño para un look más profesional */
   height: auto;
 }
 
 .navbar-center {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem; /* Aumentar el espacio entre los botones */
 }
 
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem; /* Más espacio entre iconos */
 }
 
 .btn {
   background-color: transparent;
   color: white;
   border: 2px solid transparent;
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 1rem;
+  font-weight: bold; /* Aumenta el grosor del texto */
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #0a9396;
+  background-color: #005f73; /* Un tono más oscuro en el hover */
   border-color: white;
 }
 
@@ -45,15 +46,16 @@
 .logout-btn {
   background-color: #94d2bd;
   color: #001219;
-  border-radius: 25px;
-  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  padding: 0.5rem 1.5rem;
   font-size: 1rem;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
 .login-btn:hover,
 .logout-btn:hover {
-  background-color: #007343;
+  background-color: #005f73;
   color: white;
 }
 
@@ -64,15 +66,15 @@
 }
 
 .perfil-btn {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
 .perfil-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.15); /* Pequeño aumento al hover */
 }
 
 /* Mobile responsive adjustments */
@@ -85,7 +87,7 @@
   .navbar-center {
     margin-top: 1rem;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem; /* Reduce el gap en pantallas pequeñas */
   }
 
   .navbar-right {
@@ -111,8 +113,8 @@
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 9999; /* Mantiene el desplegable por encima de cualquier otro contenido */
-  margin-top: 10px; /* Aumenta el margen para evitar que los botones se solapen */
+  z-index: 9999;
+  margin-top: 10px;
 }
 
 .dropdown-content .btn {
@@ -130,7 +132,6 @@
   display: block;
 }
 
-/* Asegura que los elementos desplegables no se superpongan */
 .dropdown-content .btn {
   width: 100%;
   box-sizing: border-box;

@@ -1,12 +1,9 @@
 <header class="header">
   <div class="hero-section">
     <nav class="navbar">
-      <!-- Logo alineado a la izquierda -->
       <div class="navbar-left">
         <img src="assets/imagenes/logoana.png" alt="Logo" class="logo" />
       </div>
-
-      <!-- Navegación central -->
       <div class="navbar-center">
         <button class="btn" (click)="home()">Principal</button>
         <button class="btn" (click)="goToAgendarCita()">Agendar Cita</button>
@@ -14,13 +11,11 @@
         <button class="btn" (click)="Listaservicios()">
           Lista de Servicios
         </button>
-        <button class="btn" (click)="conoceme()">Conoceme</button>
-
-        <!-- Mostrar botones adicionales si está logueado -->
+        <button class="btn" (click)="conoceme()">Conóceme</button>
         <ng-container *ngIf="isLoggedIn">
           <div class="dropdown" [ngClass]="{ open: isDropdownOpen }">
             <button class="btn" (click)="toggleDropdown()">
-              Opciones adicionales <span>&#x25BC;</span>
+              Opciones adicionales &#x25BC;
             </button>
             <div class="dropdown-content" *ngIf="isDropdownOpen">
               <button class="btn" (click)="goToListaCitas(); closeDropdown()">
@@ -45,15 +40,10 @@
           </div>
         </ng-container>
       </div>
-
-      <!-- Perfil y cierre de sesión a la derecha -->
       <div class="navbar-right">
-        <!-- Mostrar login o perfil según estado de autenticación -->
         <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
           <button class="btn login-btn" (click)="goToLogin()">Login</button>
         </ng-container>
-
-        <!-- Si está logueado, mostrar perfil y botón de cierre de sesión -->
         <ng-template #loggedInTemplate>
           <div class="user-info">
             <img

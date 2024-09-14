@@ -123,18 +123,6 @@
   background-color: #0056b3;
 }
 
-.map-direccion-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 50px 10%;
-  gap: 20px;
-}
-
-.map-section {
-  flex: 1;
-  margin-right: 20px;
-}
-
 .direccion-section {
   flex: 1;
   background-color: #f4f4f4;
@@ -144,8 +132,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center; /* Alineación horizontal */
   max-width: 600px; /* Limita el ancho de la dirección */
-  text-align: center; /* Centra el texto */
+  margin: 0 auto; /* Centrar el contenedor horizontalmente */
+  text-align: center; /* Centrar el texto */
 }
 
 .direccion-section h2 {
@@ -164,4 +154,9 @@
   font-weight: bold;
   font-size: 20px;
   color: #0056b3;
+  text-decoration: none; /* Evitar subrayado en el enlace */
+}
+
+.direccion-text:hover {
+  text-decoration: underline; /* Subrayado en hover */
 }
