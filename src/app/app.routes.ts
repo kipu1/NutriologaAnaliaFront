@@ -19,7 +19,7 @@ import { VerListaServicioComponent } from './components/ver-lista-servicio/ver-l
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'loginana', component: LoginComponent },
-  { path: 'registro', component: RegistroComponent },
+  { path: 'registroana', component: RegistroComponent },
   { path: 'agendar-cita', component: AgendarCitaComponent },
   { path: 'home', component: HomeComponent },
   { path: 'conoceme', component: ConocemeComponent },
