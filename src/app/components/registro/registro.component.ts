@@ -23,6 +23,7 @@ export class RegistroComponent {
   nombre: string = '';
   correo: string = '';
   telefono: string = '';
+  direccion: string = '';
   contrasena: string = '';
 
   constructor(
@@ -33,7 +34,13 @@ export class RegistroComponent {
 
   registro() {
     // Verifica que todos los campos están completos
-    if (!this.nombre || !this.correo || !this.telefono || !this.contrasena) {
+    if (
+      !this.nombre ||
+      !this.correo ||
+      !this.telefono ||
+      !this.direccion ||
+      !this.contrasena
+    ) {
       // Usa Toastr para mostrar la alerta en vez de un mensaje en HTML
       this.toastr.error('Por favor, completa todos los campos.', 'Error');
       return;
@@ -44,6 +51,7 @@ export class RegistroComponent {
       correo: this.correo,
       telefono: this.telefono,
       contrasena: this.contrasena,
+      direccion: this.direccion,
     };
 
     this.usuarioService.registro(usuario).subscribe(

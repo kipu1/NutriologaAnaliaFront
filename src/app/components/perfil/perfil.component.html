@@ -18,7 +18,18 @@
           class="form-control"
         />
       </div>
-
+      <div class="form-group">
+        <label for="motivo">Dirección:</label>
+        <textarea
+          id="direccion"
+          [(ngModel)]="usuario.direccion"
+          name="direccion"
+          required
+          class="form-control"
+          placeholder="Ingresa la Dirección"
+          maxlength="5000"
+        ></textarea>
+      </div>
       <button class="btn-actualizar" (click)="actualizarPerfil()">
         Actualizar Perfil
       </button>

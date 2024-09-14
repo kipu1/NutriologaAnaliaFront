@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DireccionService } from '../../services/direccion.service';
 import { FormsModule } from '@angular/forms';
+import { Usuario } from '../../models/usuario';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -20,14 +21,23 @@ export class HomeComponent implements OnInit {
   mapaUrl: string =
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.9170632923525!2d-103.35551598455352!3d20.675157102141455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b08f7db0c12d%3A0x7ed776d60c979e8d!2sCentro%2C%2044600%20Guadalajara%2C%20Jal.%2C%20México!5e0!3m2!1ses!2sec!4v1693945987841!5m2!1ses!2sec';
   nuevaDireccion: string = '';
+  usuario!: Usuario;
+
   constructor(
     public sanitizer: DomSanitizer,
     private direccionService: DireccionService,
-    private router: Router
+    private router: Router,
+    private usuarioservice: UsuarioService
   ) {}
 
   ngOnInit(): void {
     this.guardarDireccion();
+    this.cargarPerfil();
+  }
+  cargarPerfil(): void {
+    this.usuarioservice.obtenerPerfil().subscribe((data: Usuario) => {
+      this.usuario = data;
+    });
   }
 
   servicios(): void {
