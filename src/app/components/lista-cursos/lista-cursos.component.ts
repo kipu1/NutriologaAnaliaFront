@@ -15,6 +15,7 @@ import { CursoService } from '../../services/curso.service';
 export class ListaCursosComponent implements OnInit {
   cursos: Curso[] = [];
   passwords: string[] = []; // Para almacenar las contraseñas temporalmente
+  mostrarMensaje: boolean[] = []; // Controla si se muestra el mensaje del teléfono del usuario
 
   constructor(private cursoService: CursoService) {}
 
@@ -25,7 +26,9 @@ export class ListaCursosComponent implements OnInit {
   cargarCursos(): void {
     this.cursoService.listarCursos().subscribe((data) => {
       this.cursos = data;
+      console.log(this.cursos); // Verifica los datos de los cursos y los usuarios asociados
       this.passwords = new Array(this.cursos.length); // Inicializa el array para las contraseñas
+      this.mostrarMensaje = new Array(this.cursos.length).fill(false); // Inicializa el array para los mensajes
     });
   }
 
@@ -41,12 +44,15 @@ export class ListaCursosComponent implements OnInit {
           a.click();
           URL.revokeObjectURL(objectUrl);
           this.passwords[index] = ''; // Limpia la contraseña después de la descarga
+          this.mostrarMensaje[index] = false; // Oculta el mensaje si se descarga correctamente
         },
         (error) => {
           if (error.status === 403) {
             alert('Contraseña incorrecta');
+            this.mostrarMensaje[index] = true; // Muestra el mensaje del teléfono del usuario
           } else {
             alert('Error al descargar el archivo');
+            this.mostrarMensaje[index] = true; // Muestra el mensaje del teléfono del usuario
           }
         }
       );

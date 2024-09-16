@@ -22,5 +22,13 @@
     <button (click)="descargarCurso(curso, i)" class="btn-descargar">
       Descargar Archivo
     </button>
+
+    <!-- Mostrar el teléfono del usuario -->
+    <p class="mensaje-telefono">
+      Si desea este curso, por favor enviar el recibo a este número:
+      <strong>{{ curso.telefonoUsuario }}</strong>
+      <!-- Ahora puedes acceder a telefonoUsuario -->
+    </p>
+    <!-- Aquí accedes al teléfono del usuario -->
   </div>
 </div>
