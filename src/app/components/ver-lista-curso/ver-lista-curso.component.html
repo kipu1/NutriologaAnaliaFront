@@ -5,6 +5,7 @@
         <th>Nombre</th>
         <th>Descripción</th>
         <th>Precio</th>
+        <th>Contaseña</th>
         <th>Archivo</th>
         <th style="width: 100px">Acciones</th>
       </tr>
@@ -14,6 +15,7 @@
         <td>{{ curso.nombre }}</td>
         <td>{{ curso.descripcion }}</td>
         <td>{{ curso.precio }}</td>
+        <td>{{ curso.password }}</td>
         <td>
           <a [href]="curso.fileUrl" target="_blank">{{
             curso.fileUrl.split("/").pop()
