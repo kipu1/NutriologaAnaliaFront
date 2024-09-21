@@ -7,15 +7,25 @@ import {
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Usuario } from '../models/usuario';
 import { LoginRequest } from '../models/LoginRequest';
-import { environment } from '../environment/environment.pro';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsuarioService {
-  private apiUrl = `${environment.apiUrl}/api/usuarios`;
+  private apiUrl = `${environment.apiUrl}`;
 
   constructor(private http: HttpClient) {}
+  registro(usuario: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(`${this.apiUrl}/registro`, usuario, { headers }).pipe(
+      catchError((error) => {
+        console.error('Error en el registro', error);
+        return throwError(error);
+      })
+    );
+  }
+
   login(correo: string, contrasena: string): Observable<any> {
     return this.http
       .post<any>(`${this.apiUrl}/login`, { correo, contrasena })
@@ -25,17 +35,16 @@ export class UsuarioService {
           const user = {
             nombre: response.nombre,
             correo: response.correo,
-
             token: response.token,
-          }; // Guardar todos los atributos en localStorage
+          };
           localStorage.setItem('currentUser', JSON.stringify(user));
         }),
         catchError(this.handleError)
       );
   }
-  // Obtener los datos completos del perfil del usuario autenticado
+
   obtenerPerfil(): Observable<Usuario> {
-    const headers = this.getAuthHeaders(); // Obtener headers con el token
+    const headers = this.getAuthHeaders();
     return this.http.get<Usuario>(`${this.apiUrl}/perfil`, { headers }).pipe(
       tap((usuario) => {
         console.log('Datos del perfil del usuario:', usuario);
@@ -70,7 +79,7 @@ export class UsuarioService {
     return throwError(() => new Error(errorMessage));
   }
 
-  // Registro de un nuevo usuario
+  /*Registro de un nuevo usuario
   registro(usuario: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(`${this.apiUrl}/registro`, usuario, { headers }).pipe(
@@ -79,7 +88,7 @@ export class UsuarioService {
         return throwError(error);
       })
     );
-  }
+  }*/
 
   // Guardar los datos del usuario en localStorage
   setUsuarioInfo(usuario: Usuario, token: string) {
