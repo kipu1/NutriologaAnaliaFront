@@ -13,7 +13,7 @@ import { environment } from '../environment/environment.pro';
   providedIn: 'root',
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:8080/api/usuarios';
+  private apiUrl = `${environment.apiUrl}/api/usuarios`;
 
   constructor(private http: HttpClient) {}
   login(correo: string, contrasena: string): Observable<any> {
