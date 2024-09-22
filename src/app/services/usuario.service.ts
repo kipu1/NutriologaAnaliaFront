@@ -19,12 +19,17 @@ export class UsuarioService {
   constructor(private http: HttpClient) {}
   registro(usuario: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.apiUrl}/registro`, usuario, { headers }).pipe(
-      catchError((error) => {
-        console.error('Error en el registro', error);
-        return throwError(error);
+    return this.http
+      .post(`${this.apiUrl}/registro`, usuario, {
+        headers,
+        withCredentials: true,
       })
-    );
+      .pipe(
+        catchError((error) => {
+          console.error('Error en el registro', error);
+          return throwError(error);
+        })
+      );
   }
 
   login(correo: string, contrasena: string): Observable<any> {
