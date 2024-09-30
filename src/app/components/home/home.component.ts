@@ -8,6 +8,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DireccionService } from '../../services/direccion.service';
 import { FormsModule } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
+import { Direccion } from '../../models/direccion';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -18,29 +19,37 @@ import { Usuario } from '../../models/usuario';
 export class HomeComponent implements OnInit {
   currentSlide: number = 0;
   totalSlides: number = 3;
-  direccion!: string;
-
+  mapaUrl!: SafeResourceUrl;
+  nuevaDireccion: string = '';
+  usuario!: Usuario;
+  direcciones: Direccion[] = [];
   constructor(
     public sanitizer: DomSanitizer,
     private router: Router,
-    private usuarioservice: UsuarioService
+    private usuarioservice: UsuarioService,
+    private direccionService: DireccionService
   ) {}
 
   ngOnInit(): void {
-    this.obtenerDireccion();
+    this.cargarPerfil();
+    this.cargarDirecciones();
   }
-
-  obtenerDireccion(): void {
-    const correo = 'correo@ejemplo.com'; // Aquí usa el correo del usuario para obtener su dirección
-    this.usuarioservice.obtenerDireccion(correo).subscribe(
-      (data) => {
-        this.direccion = data.direccion;
+  cargarDirecciones(): void {
+    this.direccionService.obtenerDirecciones().subscribe(
+      (data: Direccion[]) => {
+        this.direcciones = data;
       },
       (error) => {
-        console.error('Error al obtener la dirección:', error);
+        console.error('Error al obtener direcciones', error);
       }
     );
   }
+  cargarPerfil(): void {
+    this.usuarioservice.obtenerPerfil().subscribe((data: Usuario) => {
+      this.usuario = data;
+    });
+  }
+
   servicios(): void {
     this.router.navigate(['/lista-servicio']);
   }

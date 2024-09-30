@@ -8,6 +8,7 @@ import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Usuario } from '../models/usuario';
 import { LoginRequest } from '../models/LoginRequest';
 import { environment } from '../environment/environment';
+import { Direccion } from '../models/direccion';
 
 @Injectable({
   providedIn: 'root',
@@ -126,7 +127,10 @@ export class UsuarioService {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     return currentUser.correo || null;
   }
-
+  getUsuarioId(): number | null {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    return currentUser.id || null; // Asegúrate de que el ID está guardado en el localStorage
+  }
   // Obtener teléfono del usuario desde localStorage
   getTelefonoUsuario(): string | null {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
@@ -134,9 +138,10 @@ export class UsuarioService {
   }
 
   // Obtener dirección del usuario desde localStorage
-  getDireccionUsuario(): string | null {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    return currentUser.direccion || null;
+  obtenerDireccionesPorUsuarioId(usuarioId: number): Observable<Direccion[]> {
+    return this.http.get<Direccion[]>(
+      `${this.apiUrl}/direcciones/usuario/${usuarioId}`
+    );
   }
 
   // Limpiar localStorage al cerrar sesión
