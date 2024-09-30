@@ -20,8 +20,14 @@ export class HomeComponent implements OnInit {
   totalSlides: number = 3;
   mapaUrl!: SafeResourceUrl;
   nuevaDireccion: string = '';
-  usuario!: Usuario;
 
+  usuario: Usuario = {
+    nombre: '',
+    correo: '',
+    telefono: '',
+    direccion: '',
+    contrasena: '',
+  };
   constructor(
     public sanitizer: DomSanitizer,
     private router: Router,
