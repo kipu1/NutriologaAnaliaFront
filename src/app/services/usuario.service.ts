@@ -58,6 +58,11 @@ export class UsuarioService {
       catchError(this.handleError)
     );
   }
+  obtenerDireccion(correo: string): Observable<{ direccion: string }> {
+    return this.http.get<{ direccion: string }>(
+      `${this.apiUrl}/direccion/${correo}`
+    );
+  }
 
   // Actualizar el perfil del usuario
   actualizarPerfil(usuario: Usuario): Observable<Usuario> {
@@ -107,9 +112,9 @@ export class UsuarioService {
     };
     localStorage.setItem('currentUser', JSON.stringify(user)); // Guardar toda la información del usuario en localStorage
   }
-  obtenerDireccion(): Observable<{ direccion: string }> {
-    return this.http.get<{ direccion: string }>(this.apiUrl);
-  }
+  //obtenerDireccion(): Observable<{ direccion: string }> {
+  // return this.http.get<{ direccion: string }>(this.apiUrl);
+  //}
   // Obtener nombre del usuario desde localStorage
   getNombreUsuario(): string | null {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');

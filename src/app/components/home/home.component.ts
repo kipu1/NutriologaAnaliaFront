@@ -18,16 +18,8 @@ import { Usuario } from '../../models/usuario';
 export class HomeComponent implements OnInit {
   currentSlide: number = 0;
   totalSlides: number = 3;
-  mapaUrl!: SafeResourceUrl;
-  nuevaDireccion: string = '';
+  direccion!: string;
 
-  usuario: Usuario = {
-    nombre: '',
-    correo: '',
-    telefono: '',
-    direccion: '',
-    contrasena: '',
-  };
   constructor(
     public sanitizer: DomSanitizer,
     private router: Router,
@@ -35,15 +27,20 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cargarPerfil();
+    this.obtenerDireccion();
   }
 
-  cargarPerfil(): void {
-    this.usuarioservice.obtenerPerfil().subscribe((data: Usuario) => {
-      this.usuario = data;
-    });
+  obtenerDireccion(): void {
+    const correo = 'correo@ejemplo.com'; // Aquí usa el correo del usuario para obtener su dirección
+    this.usuarioservice.obtenerDireccion(correo).subscribe(
+      (data) => {
+        this.direccion = data.direccion;
+      },
+      (error) => {
+        console.error('Error al obtener la dirección:', error);
+      }
+    );
   }
-
   servicios(): void {
     this.router.navigate(['/lista-servicio']);
   }
