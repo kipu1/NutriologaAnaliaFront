@@ -4,13 +4,14 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { Cita } from '../models/cita';
 import { UsuarioService } from './usuario.service';
 import { LocalStorageService } from './LocalStorageService';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CitaService {
-  private apiUrl = 'http://localhost:8080/api/citas';
-
+  //private apiUrl = 'http://localhost:8080/api/citas';
+  private apiUrl = `${environment.apiUrl}/citas`;
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService

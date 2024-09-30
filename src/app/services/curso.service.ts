@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Curso } from '../models/curso';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CursoService {
-  private baseUrl = 'http://localhost:8080/api/cursos';
-
+  //private baseUrl = 'http://localhost:8080/api/cursos';
+  private baseUrl = `${environment.apiUrl}/cursos`;
   constructor(private http: HttpClient) {}
 
   crearCurso(curso: FormData): Observable<Curso> {
