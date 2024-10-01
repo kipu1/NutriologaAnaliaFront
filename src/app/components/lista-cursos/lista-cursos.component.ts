@@ -26,7 +26,7 @@ export class ListaCursosComponent implements OnInit {
   cargarCursos(): void {
     this.cursoService.listarCursos().subscribe((data) => {
       this.cursos = data;
-      console.log(this.cursos); // Verifica los datos de los cursos y los usuarios asociados
+      // Verifica los datos de los cursos y los usuarios asociados
       this.passwords = new Array(this.cursos.length); // Inicializa el array para las contraseñas
       this.mostrarMensaje = new Array(this.cursos.length).fill(false); // Inicializa el array para los mensajes
     });

@@ -75,32 +75,6 @@ export class VerListaCursoComponent {
     this.cursoSeleccionado = null;
   }
 
-  descargarCurso(curso: Curso, index: number): void {
-    const password = this.passwords[index]; // Obtiene la contraseña temporal
-    if (password) {
-      this.cursoService.descargarCurso(curso.id, password).subscribe(
-        (response: Blob) => {
-          const a = document.createElement('a');
-          const objectUrl = URL.createObjectURL(response);
-          a.href = objectUrl;
-          a.download = curso.nombre; // El nombre del archivo para la descarga
-          a.click();
-          URL.revokeObjectURL(objectUrl);
-          this.passwords[index] = ''; // Limpia la contraseña después de la descarga
-        },
-        (error) => {
-          if (error.status === 403) {
-            alert('Contraseña incorrecta');
-          } else {
-            alert('Error al descargar el archivo');
-          }
-        }
-      );
-    } else {
-      alert('Por favor, ingrese la contraseña');
-    }
-  }
-
   // Función para eliminar un curso
   eliminarCurso(id: number): void {
     if (confirm('¿Estás seguro de que quieres eliminar este curso?')) {
