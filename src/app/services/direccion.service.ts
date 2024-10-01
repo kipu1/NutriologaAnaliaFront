@@ -26,7 +26,6 @@ export class DireccionService {
   listarDirecciones(): Observable<Direccion[]> {
     return this.http.get<Direccion[]>(`${this.apiUrl}/listar`);
   }
-
   eliminarDireccion(id: number): Observable<void> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
