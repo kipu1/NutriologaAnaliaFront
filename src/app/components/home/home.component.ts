@@ -49,8 +49,9 @@ export class HomeComponent implements OnInit {
   }
   generarUrlGoogleMaps(direccion: string): string {
     const baseUrl = 'https://www.google.com/maps/search/?api=1&query=';
-    return `${baseUrl}${encodeURIComponent(direccion)}`; // Generar URL de Google Maps
+    return `${baseUrl}${encodeURIComponent(direccion)}`; // Asegúrate de codificar correctamente la dirección
   }
+
   cargarPerfil(): void {
     this.usuarioservice.obtenerPerfil().subscribe((data: Usuario) => {
       this.usuario = data;
