@@ -18,11 +18,14 @@ export class CursoService {
 
     return this.http.post<Curso>(`${this.baseUrl}/crear`, curso, { headers });
   }
-  listarCursos(): Observable<Curso[]> {
+  /* listarCursos(): Observable<Curso[]> {
     const token = localStorage.getItem('token'); // Asegúrate de que el token esté bien almacenado
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.get<Curso[]>(`${this.baseUrl}/listar`, { headers });
+  }*/
+  listarCursos(): Observable<Curso[]> {
+    return this.http.get<Curso[]>(`${this.baseUrl}/listar`);
   }
   descargarCurso(id: number, password: string): Observable<Blob> {
     const params = { password };

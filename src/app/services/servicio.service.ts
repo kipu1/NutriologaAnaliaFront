@@ -41,14 +41,16 @@ export class ServicioService {
 
     return this.http.delete<void>(`${this.apiUrl}/eliminar/${id}`, { headers });
   }
-
-  // Método para listar servicios
   listarServicios(): Observable<Servicio[]> {
+    return this.http.get<Servicio[]>(`${this.apiUrl}/listar`);
+  }
+  // Método para listar servicios
+  /*listarServicios(): Observable<Servicio[]> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.get<Servicio[]>(`${this.apiUrl}/listar`, { headers });
-  }
+}*/
 
   // Método para eliminar un servicio
 }
