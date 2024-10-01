@@ -64,26 +64,3 @@ export class CrearCursoComponent {
     this.selectedFile = null;
   }
 }
-/*onSubmit(): void {
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('nombre', this.curso.nombre);
-      formData.append('descripcion', this.curso.descripcion);
-      formData.append('precio', this.curso.precio);
-      formData.append('file', this.selectedFile);
-
-      this.cursoService.crearCurso(formData).subscribe({
-        next: (curso) => {
-          console.log('Curso creado con éxito:', curso);
-          alert('Curso creado con éxito');
-          this.router.navigate(['/ver-cursos']); // Redirigir a la lista de cursos
-        },
-        error: (err) => {
-          console.error('Error al crear curso:', err);
-          alert('Error al crear el curso');
-        },
-      });
-    } else {
-      alert('Por favor, selecciona un archivo PDF');
-    }
-  }*/
