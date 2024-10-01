@@ -16,13 +16,9 @@ export class CitaService {
     private http: HttpClient,
     private localStorageService: LocalStorageService
   ) {}
-  agendarCita(cita: Cita): Observable<Cita> {
-    const token = localStorage.getItem('token'); // Obtener el token JWT desde el localStorage
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Establecer encabezados con el token
-
-    return this.http.post<Cita>(`${this.apiUrl}/agendar`, cita, { headers });
+  agendarCita(cita: Cita): Observable<any> {
+    return this.http.post(`${this.apiUrl}/agendar`, cita); // Enviar POST a /api/citas/agendar
   }
-
   listarCitas(): Observable<Cita[]> {
     const token = localStorage.getItem('token'); // Obtener el token del localStorage
 

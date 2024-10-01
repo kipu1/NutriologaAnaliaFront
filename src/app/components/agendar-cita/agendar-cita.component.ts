@@ -38,15 +38,7 @@ export class AgendarCitaComponent {
       return;
     }
 
-    if (!this.validarFechaHora()) {
-      this.toastr.error(
-        'La fecha y hora seleccionada no es válida. Por favor, elige otro horario.',
-        'Error'
-      );
-      return;
-    }
-
-    this.cita.fechaHora = new Date(this.cita.fechaHora).toISOString();
+    this.cita.fechaHora = new Date(this.cita.fechaHora).toISOString(); // Asegurarse de que la fecha se envía en el formato correcto
 
     this.citaService.agendarCita(this.cita).subscribe({
       next: (response) => {
@@ -56,7 +48,7 @@ export class AgendarCitaComponent {
       error: (error) => {
         if (error.status === 409) {
           this.toastr.error(
-            'La fecha y hora seleccionada ya está ocupada. Por favor, elige otro horario.',
+            'La fecha y hora seleccionada ya está ocupada.',
             'Error'
           );
         } else {
