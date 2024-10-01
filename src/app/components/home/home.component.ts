@@ -43,9 +43,6 @@ export class HomeComponent implements OnInit {
           this.direccionUrl = this.generarUrlGoogleMaps(direccion.direccion);
         }
       },
-      error: (error) => {
-        console.error('Error al cargar las direcciones:', error);
-      },
     });
   }
   generarUrlGoogleMaps(direccion: string): string {
@@ -95,19 +92,3 @@ export class HomeComponent implements OnInit {
     }
   }
 }
-//nombreUsuario: string | null = '';
-/* ngOnInit() {
-    const currentUser = localStorage.getItem('currentUser');
-    console.log('Usuario logueado:', currentUser); // Verifica en la consola si el currentUser tiene nombre y token
-
-    if (currentUser) {
-      const user = JSON.parse(currentUser);
-      if (user.nombre) {
-        this.nombreUsuario = user.nombre; // Asigna el nombre correctamente
-      } else {
-        this.nombreUsuario = 'Nombre no encontrado'; // Mensaje por si no encuentra el nombre
-      }
-    } else {
-      this.nombreUsuario = 'No hay usuario logueado';
-    }
-  }*/
