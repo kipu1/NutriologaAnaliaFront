@@ -36,9 +36,9 @@ export class HomeComponent implements OnInit {
   }
   cargarDireccion(): void {
     this.direccionService.listarDirecciones().subscribe({
-      next: (direcciones: Direccion[]) => {
+      next: (direcciones) => {
         if (direcciones.length > 0) {
-          const direccion = direcciones[0]; // Si solo tienes una dirección, o manejar la primera
+          const direccion = direcciones[0]; // Tomamos la primera dirección
           this.direccionUrl = this.generarUrlGoogleMaps(direccion.direccion);
         }
       },
