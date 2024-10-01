@@ -15,6 +15,7 @@ import { ListaServicioComponent } from './components/lista-servicio/lista-servic
 import { CrearCursoComponent } from './components/crear-curso/crear-curso.component';
 import { VerListaCursoComponent } from './components/ver-lista-curso/ver-lista-curso.component';
 import { VerListaServicioComponent } from './components/ver-lista-servicio/ver-lista-servicio.component';
+import { CrearDireccionComponent } from './components/crear-direccion/crear-direccion.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -60,6 +61,11 @@ export const routes: Routes = [
   {
     path: 'ver-lista-servicio',
     component: VerListaServicioComponent,
+    canActivate: [AuthGuard], // Protegida
+  },
+  {
+    path: 'crear-direccion',
+    component: CrearDireccionComponent,
     canActivate: [AuthGuard], // Protegida
   },
 ];

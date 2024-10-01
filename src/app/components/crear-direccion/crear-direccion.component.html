@@ -1,0 +1,30 @@
+<div class="direccion-container">
+  <h2>Gestión de Direcciones</h2>
+
+  <!-- Formulario para agregar nuevas direcciones -->
+  <div class="form-container">
+    <input
+      type="text"
+      placeholder="Agregar nueva dirección"
+      [(ngModel)]="nuevaDireccion"
+      class="direccion-input"
+    />
+    <button (click)="agregarDireccion()" class="btn-agregar">Agregar</button>
+  </div>
+
+  <!-- Lista de direcciones -->
+  <div class="direccion-list">
+    <h3>Lista de Direcciones</h3>
+    <ul *ngIf="direcciones && direcciones.length > 0">
+      <li *ngFor="let direccion of direcciones">
+        <span>{{ direccion.direccion }}</span>
+        <button (click)="eliminarDireccion(direccion.id!)" class="btn-eliminar">
+          Eliminar
+        </button>
+      </li>
+    </ul>
+    <p *ngIf="!direcciones || direcciones.length === 0">
+      No hay direcciones disponibles.
+    </p>
+  </div>
+</div>

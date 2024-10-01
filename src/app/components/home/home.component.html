@@ -43,13 +43,11 @@
     </div>
   </div>
 
-  <div *ngIf="direcciones.length > 0">
-    <h2>Direcciones</h2>
-    <ul>
-      <li *ngFor="let direccion of direcciones">
-        {{ direccion.direccion }}
-        <a [href]="direccion.direccion" target="_blank">Ver en Google Maps</a>
-      </li>
-    </ul>
+  <div class="direccion-section">
+    <h2>Nuestra dirección</h2>
+    <p>Será un gusto atenderte:</p>
+    <a [href]="direcciones" target="_blank" class="direccion-text">
+      Ir a la ubicación
+    </a>
   </div>
 </div>

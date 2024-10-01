@@ -1,11 +1,11 @@
 export class Direccion {
-  id!: number;
-  direccion!: string;
-  usuarioId!: number; // Este campo vincula la dirección con un usuario (opcional si lo necesitas)
+  id?: number;
+  direccion: string;
+  usuarioId: number; // En lugar de un objeto Usuario, solo necesitas el usuarioId
 
-  constructor(id: number, direccion: string, usuarioId: number) {
-    this.id = id;
+  constructor(direccion: string, usuarioId: number, id?: number) {
     this.direccion = direccion;
     this.usuarioId = usuarioId;
+    this.id = id; // Es opcional, ya que se genera en el backend
   }
 }

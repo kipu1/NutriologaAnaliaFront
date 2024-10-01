@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environment/environment';
@@ -8,22 +8,31 @@ import { Direccion } from '../models/direccion';
   providedIn: 'root',
 })
 export class DireccionService {
-  private apiUrl = `${environment.apiUrl}/direcciones`; // API de direcciones
+  private apiUrl = `${environment.apiUrl}/direcciones`; // URL de la API
 
   constructor(private http: HttpClient) {}
 
-  // Obtener todas las direcciones
-  obtenerDirecciones(): Observable<Direccion[]> {
-    return this.http.get<Direccion[]>(`${this.apiUrl}`);
-  }
-
-  // Crear una nueva dirección
+  // Método para crear una dirección
   crearDireccion(direccion: Direccion): Observable<Direccion> {
-    return this.http.post<Direccion>(`${this.apiUrl}/crear`, direccion);
+    const token = localStorage.getItem('token'); // Obtener el token del localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<Direccion>(`${this.apiUrl}/crear`, direccion, {
+      headers,
+    });
   }
 
-  // Eliminar una dirección por ID
+  listarDirecciones(): Observable<Direccion[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<Direccion[]>(`${this.apiUrl}/listar`, { headers });
+  }
+
   eliminarDireccion(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/eliminar/${id}`);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.delete<void>(`${this.apiUrl}/eliminar/${id}`, { headers });
   }
 }

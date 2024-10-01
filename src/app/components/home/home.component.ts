@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     this.cargarDirecciones();
   }
   cargarDirecciones(): void {
-    this.direccionService.obtenerDirecciones().subscribe(
+    this.direccionService.listarDirecciones().subscribe(
       (data: Direccion[]) => {
         this.direcciones = data;
       },

@@ -100,4 +100,7 @@ export class HeaderComponent {
   serviciosver(): void {
     this.router.navigate(['/ver-lista-servicio']);
   }
+  direccion(): void {
+    this.router.navigate(['/crear-direccion']);
+  }
 }
