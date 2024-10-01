@@ -4,43 +4,47 @@
   gap: 20px;
   padding: 20px;
   justify-items: center;
+  background-color: #f8f9fa; /* Fondo claro para contrastar con las tarjetas */
 }
 
 .curso-card {
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  max-width: 300px; /* Asegura que el ancho máximo de la tarjeta sea 300px */
+  max-width: 320px; /* Ampliar ligeramente el ancho máximo */
   text-align: center;
-  transition: transform 0.3s ease;
-  word-wrap: break-word; /* Evita que las palabras largas se salgan del contenedor */
-  overflow-wrap: break-word; /* Funciona como soporte adicional */
-  hyphens: auto; /* Si es posible, corta las palabras con guiones */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .curso-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Mayor sombra al hacer hover */
 }
 
 .curso-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
   color: #333;
+  font-weight: 600;
 }
 
 .curso-card p {
   font-size: 1rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: #555;
-  word-wrap: break-word; /* Aplica la rotura de palabra en los párrafos también */
+  word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
 }
+
 .curso-card a {
   color: #007bff;
   text-decoration: none;
-  word-wrap: break-word; /* Evita que el link sea muy largo */
+  font-weight: bold;
 }
 
 .curso-card a:hover {
@@ -49,22 +53,35 @@
 
 .input-password {
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 5px;
   width: 100%;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 1rem;
 }
 
 .btn-descargar {
   background-color: #28a745;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-descargar:hover {
   background-color: #218838;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra al hacer hover */
+}
+
+.mensaje-telefono {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.mensaje-telefono strong {
+  color: #0a0a0a; /* Color rojo para resaltar el número */
 }
