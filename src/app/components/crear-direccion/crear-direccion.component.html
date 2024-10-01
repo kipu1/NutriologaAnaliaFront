@@ -20,12 +20,18 @@
 <div *ngIf="direcciones && direcciones.length > 0" class="direccion-list">
   <h3>Direcciones Registradas</h3>
   <ul>
-    <li *ngFor="let dir of direcciones">
-      {{ dir.direccion }}
-      <button (click)="editarDireccion(dir)" class="btn-edit">Editar</button>
-      <button (click)="eliminarDireccion(dir.id!)" class="btn-delete">
-        Eliminar
-      </button>
+    <li *ngFor="let dir of direcciones" class="direccion-item">
+      <div class="direccion-content">
+        <span class="direccion-text">{{ dir.direccion }}</span>
+        <div class="direccion-buttons">
+          <button (click)="editarDireccion(dir)" class="btn btn-edit">
+            Editar
+          </button>
+          <button (click)="eliminarDireccion(dir.id!)" class="btn btn-delete">
+            Eliminar
+          </button>
+        </div>
+      </div>
     </li>
   </ul>
 </div>
