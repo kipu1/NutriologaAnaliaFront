@@ -40,7 +40,7 @@ export class ListaCursosComponent implements OnInit {
           const a = document.createElement('a');
           const objectUrl = URL.createObjectURL(response);
           a.href = objectUrl;
-          a.download = curso.nombre; // El nombre del archivo para la descarga
+          a.download = curso.nombre || 'archivo'; // Asegúrate de que el nombre del archivo no sea vacío
           a.click();
           URL.revokeObjectURL(objectUrl);
           this.passwords[index] = ''; // Limpia la contraseña después de la descarga
@@ -49,11 +49,12 @@ export class ListaCursosComponent implements OnInit {
         (error) => {
           if (error.status === 403) {
             alert('Contraseña incorrecta');
-            this.mostrarMensaje[index] = true; // Muestra el mensaje del teléfono del usuario
+          } else if (error.status === 404) {
+            alert('Archivo no encontrado');
           } else {
             alert('Error al descargar el archivo');
-            this.mostrarMensaje[index] = true; // Muestra el mensaje del teléfono del usuario
           }
+          this.mostrarMensaje[index] = true; // Muestra el mensaje del teléfono del usuario
         }
       );
     } else {
