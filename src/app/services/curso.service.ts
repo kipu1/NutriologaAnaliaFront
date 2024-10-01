@@ -27,7 +27,7 @@ export class CursoService {
   descargarCurso(id: number, password: string): Observable<Blob> {
     return this.http.get(`${this.baseUrl}/descargar/${id}`, {
       params: { password },
-      responseType: 'blob', // Esto es importante para descargar archivos binarios
+      responseType: 'blob', // Asegúrate de especificar que la respuesta es un archivo binario
     });
   }
   actualizarCurso(id: number, curso: FormData): Observable<Curso> {
