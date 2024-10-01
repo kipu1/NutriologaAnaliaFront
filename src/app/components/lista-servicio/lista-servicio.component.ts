@@ -21,7 +21,7 @@ export class ListaServicioComponent {
     this.obtenerServicios();
   }
 
-  obtenerServicios(): void {
+  /*obtenerServicios(): void {
     this.servicioService.listarServicios().subscribe(
       (data) => {
         this.servicios = data;
@@ -30,8 +30,17 @@ export class ListaServicioComponent {
         console.error('Error al obtener los servicios', error);
       }
     );
+  }*/
+  obtenerServicios(): void {
+    this.servicioService.listarServicios().subscribe({
+      next: (servicios) => {
+        this.servicios = servicios;
+      },
+      error: (error) => {
+        console.error('Error al cargar las servicios', error);
+      },
+    });
   }
-
   contactarPorWhatsApp(titulo: string, telefono: string): void {
     const numeroWhatsApp = `593${telefono}`; // Código de país + número
     const mensaje = encodeURIComponent(
