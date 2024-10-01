@@ -4,6 +4,8 @@ import { DireccionService } from '../../services/direccion.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
+import { UsuarioService } from '../../services/usuario.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-direccion',
@@ -13,67 +15,106 @@ import { Usuario } from '../../models/usuario';
   styleUrl: './crear-direccion.component.scss',
 })
 export class CrearDireccionComponent {
-  direcciones: Direccion[] = [];
-  nuevaDireccion: string = '';
-  usuarioId: number | null = null; // Aquí tienes el ID del usuario autenticado
-  token: string | null = null;
+  direccion: Direccion;
+  direcciones: Direccion[] = []; // Lista de direcciones registradas
+  usuarioAutenticado: Usuario | null = null;
 
-  constructor(private direccionService: DireccionService) {}
+  constructor(
+    private direccionService: DireccionService,
+    private usuarioService: UsuarioService,
+    private toastr: ToastrService
+  ) {
+    this.direccion = new Direccion(undefined, ''); // Inicializar la dirección vacía
+  }
 
   ngOnInit(): void {
-    // Obtener el 'usuarioId' y el 'token' del localStorage
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-
-    // Asegúrate de que 'currentUser' tiene el 'id' y el 'token'
-    if (currentUser && currentUser.token && currentUser.id) {
-      this.usuarioId = currentUser.id; // Obtener el ID del usuario logueado
-      this.token = currentUser.token; // Obtener el token JWT
-      console.log('Usuario autenticado, ID:', this.usuarioId);
-    } else {
-      console.error('Usuario no está autenticado.');
-    }
-
-    this.cargarDirecciones();
-  }
-
-  cargarDirecciones(): void {
-    this.direccionService.listarDirecciones().subscribe(
-      (data: Direccion[]) => {
-        this.direcciones = data;
+    // Obtener el usuario autenticado al iniciar el componente
+    this.usuarioService.obtenerPerfil().subscribe({
+      next: (usuario) => {
+        this.usuarioAutenticado = usuario; // Guardar el usuario autenticado
+        // Cargar las direcciones del usuario autenticado
+        this.cargarDirecciones();
       },
-      (error) => {
-        console.error('Error al cargar las direcciones', error);
-      }
-    );
+      error: (error) => {
+        console.error('Error al obtener el perfil del usuario:', error);
+      },
+    });
   }
 
-  agregarDireccion(): void {
-    if (this.nuevaDireccion.trim() && this.usuarioId !== null) {
-      // Aquí solo pasas la dirección y el usuarioId
-      const direccion = new Direccion(this.nuevaDireccion, this.usuarioId);
-
-      this.direccionService.crearDireccion(direccion).subscribe(
-        (data) => {
-          this.direcciones.push(data); // Añadir la nueva dirección a la lista
-          this.nuevaDireccion = ''; // Limpiar el campo de entrada
-        },
-        (error) => {
-          console.error('Error al agregar la dirección', error);
-        }
+  // Método para guardar o actualizar una dirección
+  guardarServicio(): void {
+    if (!this.direccion.direccion) {
+      this.toastr.error(
+        'Por favor, completa todos los campos antes de guardar',
+        'Error'
       );
+      return;
+    }
+
+    if (this.direccion.id) {
+      // Si tiene ID, actualizamos la dirección existente
+      this.direccionService
+        .actualizarServicio(this.direccion.id, this.direccion)
+        .subscribe({
+          next: (response) => {
+            this.toastr.success('Dirección actualizada con éxito', 'Éxito');
+            this.cargarDirecciones(); // Recargar la lista de direcciones
+            this.resetFormulario();
+          },
+          error: (error) => {
+            this.toastr.error('Error al actualizar la dirección', 'Error');
+            console.error('Error:', error);
+          },
+        });
     } else {
-      console.error('Usuario no está autenticado o dirección no válida.');
+      // Si no tiene ID, creamos una nueva dirección
+      this.direccionService.crearDireccion(this.direccion).subscribe({
+        next: (response) => {
+          this.toastr.success('Dirección creada con éxito', 'Éxito');
+          this.cargarDirecciones(); // Recargar la lista de direcciones
+          this.resetFormulario();
+        },
+        error: (error) => {
+          this.toastr.error('Error al crear la dirección', 'Error');
+          console.error('Error:', error);
+        },
+      });
     }
   }
 
-  eliminarDireccion(id: number): void {
-    this.direccionService.eliminarDireccion(id).subscribe(
-      () => {
-        this.direcciones = this.direcciones.filter((dir) => dir.id !== id);
+  // Método para cargar las direcciones del usuario autenticado
+  cargarDirecciones(): void {
+    this.direccionService.listarDirecciones().subscribe({
+      next: (direcciones) => {
+        this.direcciones = direcciones;
       },
-      (error) => {
-        console.error('Error al eliminar la dirección', error);
-      }
-    );
+      error: (error) => {
+        console.error('Error al cargar las direcciones', error);
+      },
+    });
+  }
+
+  // Método para eliminar una dirección
+  eliminarDireccion(id: number): void {
+    this.direccionService.eliminarDireccion(id).subscribe({
+      next: () => {
+        this.toastr.success('Dirección eliminada con éxito', 'Éxito');
+        this.cargarDirecciones(); // Recargar la lista de direcciones
+      },
+      error: (error) => {
+        this.toastr.error('Error al eliminar la dirección', 'Error');
+        console.error('Error:', error);
+      },
+    });
+  }
+
+  // Método para editar una dirección
+  editarDireccion(direccion: Direccion): void {
+    this.direccion = { ...direccion }; // Copiar los datos de la dirección a editar
+  }
+
+  // Método para limpiar el formulario
+  resetFormulario(): void {
+    this.direccion = new Direccion(undefined, ''); // Resetear el formulario a una dirección vacía
   }
 }

@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   mapaUrl!: SafeResourceUrl;
   nuevaDireccion: string = '';
   usuario!: Usuario;
-  direcciones: Direccion[] = [];
+  direccionUrl: string = '';
   constructor(
     public sanitizer: DomSanitizer,
     private router: Router,
@@ -32,17 +32,24 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarPerfil();
-    this.cargarDirecciones();
+    this.cargarDireccion();
   }
-  cargarDirecciones(): void {
-    this.direccionService.listarDirecciones().subscribe(
-      (data: Direccion[]) => {
-        this.direcciones = data;
+  cargarDireccion(): void {
+    this.direccionService.listarDirecciones().subscribe({
+      next: (direcciones: Direccion[]) => {
+        if (direcciones.length > 0) {
+          const direccion = direcciones[0]; // Si solo tienes una dirección, o manejar la primera
+          this.direccionUrl = this.generarUrlGoogleMaps(direccion.direccion);
+        }
       },
-      (error) => {
-        console.error('Error al obtener direcciones', error);
-      }
-    );
+      error: (error) => {
+        console.error('Error al cargar las direcciones:', error);
+      },
+    });
+  }
+  generarUrlGoogleMaps(direccion: string): string {
+    const baseUrl = 'https://www.google.com/maps/search/?api=1&query=';
+    return `${baseUrl}${encodeURIComponent(direccion)}`; // Generar URL de Google Maps
   }
   cargarPerfil(): void {
     this.usuarioservice.obtenerPerfil().subscribe((data: Usuario) => {

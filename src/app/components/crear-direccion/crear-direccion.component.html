@@ -1,30 +1,31 @@
-<div class="direccion-container">
-  <h2>Gestión de Direcciones</h2>
-
-  <!-- Formulario para agregar nuevas direcciones -->
-  <div class="form-container">
-    <input
-      type="text"
-      placeholder="Agregar nueva dirección"
-      [(ngModel)]="nuevaDireccion"
-      class="direccion-input"
-    />
-    <button (click)="agregarDireccion()" class="btn-agregar">Agregar</button>
+<form (ngSubmit)="guardarServicio()" class="servicio-form">
+  <div class="form-group">
+    <label for="direccion">Dirección:</label>
+    <textarea
+      id="direccion"
+      [(ngModel)]="direccion.direccion"
+      name="direccion"
+      required
+      class="form-control"
+      placeholder="Ingresa la dirección"
+      maxlength="5000"
+    ></textarea>
   </div>
+  <button type="submit" class="btn-submit">
+    {{ direccion.id ? "Actualizar Dirección" : "Guardar Dirección" }}
+  </button>
+</form>
 
-  <!-- Lista de direcciones -->
-  <div class="direccion-list">
-    <h3>Lista de Direcciones</h3>
-    <ul *ngIf="direcciones && direcciones.length > 0">
-      <li *ngFor="let direccion of direcciones">
-        <span>{{ direccion.direccion }}</span>
-        <button (click)="eliminarDireccion(direccion.id!)" class="btn-eliminar">
-          Eliminar
-        </button>
-      </li>
-    </ul>
-    <p *ngIf="!direcciones || direcciones.length === 0">
-      No hay direcciones disponibles.
-    </p>
-  </div>
+<!-- Lista de direcciones registradas -->
+<div *ngIf="direcciones && direcciones.length > 0" class="direccion-list">
+  <h3>Direcciones Registradas</h3>
+  <ul>
+    <li *ngFor="let dir of direcciones">
+      {{ dir.direccion }}
+      <button (click)="editarDireccion(dir)" class="btn-edit">Editar</button>
+      <button (click)="eliminarDireccion(dir.id!)" class="btn-delete">
+        Eliminar
+      </button>
+    </li>
+  </ul>
 </div>
