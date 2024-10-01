@@ -45,7 +45,7 @@
       </div>
       <div class="navbar-right">
         <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
-          <button class="btn login-btn" (click)="goToLogin()">Login</button>
+          <!-- <button class="btn login-btn" (click)="goToLogin()">Login</button> -->
         </ng-container>
         <ng-template #loggedInTemplate>
           <div class="user-info">
