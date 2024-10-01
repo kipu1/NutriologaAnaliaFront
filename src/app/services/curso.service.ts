@@ -25,19 +25,11 @@ export class CursoService {
     return this.http.get<Curso[]>(`${this.baseUrl}/listar`, { headers });
   }
   descargarCurso(id: number, password: string): Observable<Blob> {
-    return this.http
-      .get(`${this.baseUrl}/descargar/${id}`, {
-        params: { password },
-        responseType: 'blob', // Asegúrate de especificar que la respuesta es un archivo binario
-      })
-      .pipe(
-        catchError((error) => {
-          console.error('Error al descargar el archivo', error);
-          return throwError(error);
-        })
-      );
+    return this.http.get(`${this.baseUrl}/descargar/${id}`, {
+      params: { password },
+      responseType: 'blob', // Asegúrate de especificar que la respuesta es un archivo binario
+    });
   }
-
   actualizarCurso(id: number, curso: FormData): Observable<Curso> {
     const token = localStorage.getItem('token');
     if (!token) {

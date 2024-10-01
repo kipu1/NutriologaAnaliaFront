@@ -5,8 +5,9 @@
         <th>Nombre</th>
         <th>Descripción</th>
         <th>Precio</th>
-        <th>Contraseña</th>
-        <th>Acciones</th>
+        <th>Contaseña</th>
+        <th>Archivo</th>
+        <th style="width: 100px">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -14,26 +15,20 @@
         <td>{{ curso.nombre }}</td>
         <td>{{ curso.descripcion }}</td>
         <td>{{ curso.precio }}</td>
+        <td>{{ curso.password }}</td>
         <td>
-          <!-- Input para ingresar la contraseña -->
-          <input
-            type="password"
-            [(ngModel)]="passwords[i]"
-            placeholder="Ingrese contraseña"
-            class="password-input"
-          />
+          <a [href]="curso.fileUrl" target="_blank">{{
+            curso.fileUrl.split("/").pop()
+          }}</a>
         </td>
+
         <td>
-          <!-- Botón para Descargar con Contraseña -->
-          <button (click)="descargarCurso(curso, i)" class="btn-descargar">
-            Descargar
-          </button>
+          <!-- Botón de Descargar -->
 
           <!-- Botón de Actualizar -->
           <button (click)="abrirModalActualizar(curso)" class="btn-actualizar">
             Actualizar
           </button>
-
           <!-- Botón de Eliminar -->
           <button (click)="eliminarCurso(curso.id)" class="btn-eliminar">
             Eliminar
