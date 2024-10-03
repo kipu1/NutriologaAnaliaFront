@@ -82,9 +82,9 @@ export class LoginComponent {
         console.error('Error en el login', error);
       }
     );
-  }*/
+  }
 
   irARegistro() {
     this.router.navigate(['/registro']); // Redirige a la página de registro
-  }
+  }*/
 }

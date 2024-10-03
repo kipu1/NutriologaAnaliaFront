@@ -20,14 +20,14 @@ import { CrearDireccionComponent } from './components/crear-direccion/crear-dire
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'loginana', component: LoginComponent },
-  { path: 'registro', component: RegistroComponent },
+
   { path: 'agendar-cita', component: AgendarCitaComponent },
   { path: 'home', component: HomeComponent },
   { path: 'conoceme', component: ConocemeComponent },
   { path: 'lista-cursos', component: ListaCursosComponent },
   { path: 'lista-servicio', component: ListaServicioComponent },
 
-  // Rutas protegidas (requieren estar logueado)
+  // Rutas protegidas (requieren estar logueado)  { path: 'registro', component: RegistroComponent },
   {
     path: 'servicios',
     component: ServiciosComponent,
