@@ -27,8 +27,8 @@ export class AgendarCitaComponent {
 
   agendarCita() {
     if (this.validarFechaHora()) {
-      // Lógica de agendar cita solo si la fecha y hora son válidas
-      this.cita.fechaHora = new Date(this.cita.fechaHora).toISOString();
+      // Mantener la fecha y hora seleccionada sin convertir a UTC
+      this.cita.fechaHora = this.cita.fechaHora;
 
       this.citaService.agendarCita(this.cita).subscribe({
         next: (response) => {
@@ -48,6 +48,7 @@ export class AgendarCitaComponent {
       });
     }
   }
+
   validarFechaHora(): boolean {
     const fechaHoraSeleccionada = new Date(this.cita.fechaHora);
     const day = fechaHoraSeleccionada.getDay(); // 0: domingo, 1: lunes, ..., 6: sábado
