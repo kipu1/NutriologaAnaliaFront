@@ -349,3 +349,93 @@
     transform: translateY(-15px);
   }
 }
+@media only screen and (max-width: 768px) {
+  /* Ajustes para la sección de servicios */
+  .services-section {
+    flex-direction: column; /* Apilar tarjetas verticalmente */
+    padding: 40px 20px; /* Menos padding */
+  }
+
+  .service-card {
+    width: 100%; /* Tarjetas ocuparán el 100% del ancho */
+    margin-bottom: 20px; /* Espacio entre las tarjetas */
+  }
+
+  /* Ajustes para las tarjetas médicas */
+  .medical-section {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .medical-card {
+    width: 90%; /* Más ancho en pantallas pequeñas */
+    margin-bottom: 20px;
+  }
+
+  .medical-card h2 {
+    font-size: 1.6em;
+  }
+
+  .medical-card p {
+    font-size: 1em;
+  }
+
+  .primary-button,
+  .secondary-button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  /* Ajustes para la sección de ubicación */
+  .location-section {
+    padding: 30px 10px;
+  }
+
+  .location-content h2 {
+    font-size: 1.8em;
+  }
+
+  .location-content p {
+    font-size: 1em;
+  }
+
+  .location-link {
+    padding: 10px 15px;
+    font-size: 1em;
+  }
+}
+
+/* Ajustes para pantallas más pequeñas (máximo 480px) */
+@media only screen and (max-width: 480px) {
+  .services-section {
+    padding: 20px 10px;
+  }
+
+  .service-card h2 {
+    font-size: 1.4em;
+  }
+
+  .service-card p {
+    font-size: 1em;
+  }
+
+  .info-button,
+  .cta-button {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+
+  /* Ajustes en la sección de ubicación */
+  .location-content h2 {
+    font-size: 1.5em;
+  }
+
+  .location-content p {
+    font-size: 0.9em;
+  }
+
+  .location-link {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+}

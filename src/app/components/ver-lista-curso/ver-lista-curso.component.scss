@@ -158,3 +158,32 @@
 .btn-cancelar:hover {
   background-color: #e53935;
 }
+
+/* Ajustes específicos para móviles (pantallas menores de 768px) */
+@media (max-width: 768px) {
+  /* Reducir el padding en celdas */
+  .styled-table th,
+  .styled-table td {
+    padding: 5px;
+  }
+
+  /* Reducir el tamaño de los botones en móviles */
+  .btn-actualizar,
+  .btn-eliminar {
+    padding: 3px 5px;
+    font-size: 0.7rem;
+  }
+
+  /* Ocultar algunas columnas en móviles para ahorrar espacio */
+  .styled-table th:nth-child(2),
+  .styled-table td:nth-child(2),
+  .styled-table th:nth-child(3),
+  .styled-table td:nth-child(3) {
+    display: none; /* Ocultar las columnas de descripción y precio */
+  }
+
+  /* Ajustar el ancho del modal en pantallas pequeñas */
+  .modal {
+    width: 90%; /* Ocupar más espacio en pantallas pequeñas */
+  }
+}
