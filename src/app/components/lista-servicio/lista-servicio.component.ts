@@ -21,16 +21,6 @@ export class ListaServicioComponent {
     this.obtenerServicios();
   }
 
-  /*obtenerServicios(): void {
-    this.servicioService.listarServicios().subscribe(
-      (data) => {
-        this.servicios = data;
-      },
-      (error) => {
-        console.error('Error al obtener los servicios', error);
-      }
-    );
-  }*/
   obtenerServicios(): void {
     this.servicioService.listarServicios().subscribe({
       next: (servicios) => {
