@@ -58,14 +58,14 @@ export class AgendarCitaComponent {
     // Verificar que sea martes (2), miércoles (3), jueves (4) o sábado (6)
     if (day !== 2 && day !== 3 && day !== 4 && day !== 6) {
       this.toastr.error(
-        'Solo se pueden agendar citas los martes, miércoles, jueves',
+        'Solo se pueden agendar citas los martes, miércoles, jueves o sábados',
         'Error'
       );
       return false;
     }
 
-    // Validar los turnos exactos
-    const turnosValidos = [
+    // Turnos permitidos para martes, miércoles y jueves (de 5:30 PM a 8:30 PM)
+    const turnosValidosEntreSemana = [
       { hour: 17, minutes: 30 }, // 5:30 PM
       { hour: 18, minutes: 0 }, // 6:00 PM
       { hour: 18, minutes: 30 }, // 6:30 PM
@@ -74,16 +74,57 @@ export class AgendarCitaComponent {
       { hour: 20, minutes: 0 }, // 8:00 PM
     ];
 
-    const turnoValido = turnosValidos.some(
-      (turno) => turno.hour === hour && turno.minutes === minutes
-    );
+    // Turnos permitidos para sábados (de 10:00 AM a 8:30 PM)
+    const turnosValidosSabado = [
+      { hour: 10, minutes: 0 }, // 10:00 AM
+      { hour: 10, minutes: 30 }, // 10:30 AM
+      { hour: 11, minutes: 0 }, // 11:00 AM
+      { hour: 11, minutes: 30 }, // 11:30 AM
+      { hour: 12, minutes: 0 }, // 12:00 PM
+      { hour: 12, minutes: 30 }, // 12:30 PM
+      { hour: 13, minutes: 0 }, // 1:00 PM
+      { hour: 13, minutes: 30 }, // 1:30 PM
+      { hour: 14, minutes: 0 }, // 2:00 PM
+      { hour: 14, minutes: 30 }, // 2:30 PM
+      { hour: 15, minutes: 0 }, // 3:00 PM
+      { hour: 15, minutes: 30 }, // 3:30 PM
+      { hour: 16, minutes: 0 }, // 4:00 PM
+      { hour: 16, minutes: 30 }, // 4:30 PM
+      { hour: 17, minutes: 0 }, // 5:00 PM
+      { hour: 17, minutes: 30 }, // 5:30 PM
+      { hour: 18, minutes: 0 }, // 6:00 PM
+      { hour: 18, minutes: 30 }, // 6:30 PM
+      { hour: 19, minutes: 0 }, // 7:00 PM
+      { hour: 19, minutes: 30 }, // 7:30 PM
+      { hour: 20, minutes: 0 }, // 8:00 PM
+    ];
 
-    if (!turnoValido) {
-      this.toastr.error(
-        'Por favor selecciona un turno válido: de 5:30 PM a 8:30 PM',
-        'Error'
+    // Validar los turnos según el día
+    let turnoValido = false;
+    if (day === 6) {
+      // Sábado
+      turnoValido = turnosValidosSabado.some(
+        (turno) => turno.hour === hour && turno.minutes === minutes
       );
-      return false;
+      if (!turnoValido) {
+        this.toastr.error(
+          'Por favor selecciona un turno válido para sábado: de 10:00 AM a 8:30 PM',
+          'Error'
+        );
+        return false;
+      }
+    } else {
+      // Martes, miércoles o jueves
+      turnoValido = turnosValidosEntreSemana.some(
+        (turno) => turno.hour === hour && turno.minutes === minutes
+      );
+      if (!turnoValido) {
+        this.toastr.error(
+          'Por favor selecciona un turno válido para martes, miércoles o jueves: de 5:30 PM a 8:30 PM',
+          'Error'
+        );
+        return false;
+      }
     }
 
     return true;
