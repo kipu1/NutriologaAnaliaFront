@@ -1,5 +1,24 @@
+/* Hace que la página ocupe el 100% de la altura de la ventana */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+}
+
+main {
+  flex: 1; /* El contenido principal toma el espacio restante entre el header y el footer */
+}
+
+/* Mantén tu estilo del footer */
 .footer {
-  background-color: #ee9696;
+  background-color: #d1f4df;
   padding: 40px 0;
   text-align: center;
 }

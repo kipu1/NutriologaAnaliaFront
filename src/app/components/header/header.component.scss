@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #3bd17a; /* Cambiar a un verde más profesional */
+  background-color: #ffffff; /* Cambiar a un verde más profesional */
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -27,7 +27,7 @@
 
 .btn {
   background-color: transparent;
-  color: white;
+  color: rgb(0, 0, 0);
   border: 2px solid transparent;
   padding: 0.5rem 1.5rem;
   border-radius: 30px;
@@ -38,8 +38,8 @@
 }
 
 .btn:hover {
-  background-color: #005f73; /* Un tono más oscuro en el hover */
-  border-color: white;
+  background-color: #d1f4df; /* Un tono más oscuro en el hover */
+  border-color: rgb(0, 0, 0);
 }
 
 .login-btn,

@@ -3,10 +3,9 @@
   padding: 30px;
   border-radius: 10px;
   width: 350px;
-  margin: 0 auto;
+  margin: 50px auto; /* Ajusta el margen superior aquí */
   text-align: center;
 }
-
 h2 {
   color: #ffffff;
   margin-bottom: 20px;
@@ -46,17 +45,13 @@ button.btn-primary {
   border-radius: 5px;
   border: none;
   background-color: #00b894;
-  color: #fff;
+  color: #ffffff;
   font-size: 16px;
   cursor: pointer;
 }
 
-button.btn-primary:hover {
-  background-color: #019873;
-}
-
 p {
-  color: #ffffff;
+  color: #5fb9ed;
   margin-top: 10px;
 }
 
@@ -70,5 +65,5 @@ button {
 }
 
 button:hover {
-  color: #019873;
+  color: #000000;
 }

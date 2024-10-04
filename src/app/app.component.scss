@@ -1,0 +1,29 @@
+/* Estilos globales */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* El contenedor ocupará al menos el 100% del alto de la pantalla */
+}
+
+main {
+  flex: 1; /* El contenido principal ocupará todo el espacio disponible antes del footer */
+}
+
+/* Mantén los estilos de tu footer */
+.footer {
+  background-color: #ee9696;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  color: #000;
+}
