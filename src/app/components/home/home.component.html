@@ -27,27 +27,37 @@
     </div>
   </div>
 
-  <!-- Sección de Servicios, Proyectos y Clientes -->
-  <div class="services-section">
-    <div class="service-card">
+  <!-- Sección de Servicios, Proyectos y Clientes con animaciones -->
+  <div class="medical-section">
+    <div class="medical-card">
       <h2>SERVICIOS</h2>
-      <p>
-        Explora nuestros servicios personalizados para mejorar tu bienestar.
-      </p>
-      <button class="info-button" (click)="servicios()">Ver Servicios</button>
+      <p>Descubre nuestros servicios para cuidar de tu salud y bienestar.</p>
+      <button class="primary-button" (click)="servicios()">
+        Ver Servicios
+      </button>
     </div>
-    <div class="service-card">
-      <h2>CONÓCEME</h2>
-      <p>Descubre más sobre mi experiencia y enfoque profesional.</p>
-      <button class="cta-button" (click)="conoceme()">Sobre Mi</button>
+
+    <div class="medical-card">
+      <h2>ACERCA DE MÍ</h2>
+      <p>
+        Conoce mi trayectoria, experiencia profesional y cómo puedo ayudarte a
+        lograr una mejor calidad de vida.
+      </p>
+      <button class="secondary-button" (click)="conoceme()">Sobre Mí</button>
     </div>
   </div>
 
-  <div class="direccion-section">
-    <h2>Nuestra dirección</h2>
-    <p>Será un gusto atenderte:</p>
-    <a [href]="direccionUrl" target="_blank" class="direccion-text">
-      Ir a la ubicación
-    </a>
+  <div class="location-section">
+    <div class="location-content">
+      <h2>Consulta Presencial</h2>
+      <p>Visítanos en nuestra clínica para una atención personalizada:</p>
+      <div class="location-icon">
+        <!-- Ícono de mapa animado -->
+        <img src="assets/imagenes/dire.png" alt="Ubicación" class="pin-icon" />
+      </div>
+      <a [href]="direccionUrl" target="_blank" class="location-link">
+        Ver ubicación en Google Maps
+      </a>
+    </div>
   </div>
 </div>
