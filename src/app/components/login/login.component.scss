@@ -1,5 +1,5 @@
 .login-container {
-  background-color: #1f1f1f;
+  background-color: #d1f4df;
   padding: 50px;
   border-radius: 10px;
   width: 350px;
@@ -7,7 +7,7 @@
   text-align: center;
 }
 h2 {
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 20px;
   font-size: 24px;
 }
@@ -18,7 +18,7 @@ h2 {
 }
 
 label {
-  color: #ffffff;
+  color: #000000;
   font-size: 14px;
   display: block;
   margin-bottom: 5px;
@@ -30,7 +30,7 @@ input[type="password"] {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #333;
+  background-color: #ffffff;
   color: #fff;
   margin-bottom: 10px;
 }
@@ -44,20 +44,20 @@ button.btn-primary {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #00b894;
-  color: #ffffff;
+  background-color: #005f73;
+  color: #000000;
   font-size: 16px;
   cursor: pointer;
 }
 
 p {
-  color: #5fb9ed;
+  color: #000000;
   margin-top: 10px;
 }
 
 button {
   background-color: transparent;
-  color: #00b894;
+  color: #000000;
   border: none;
   cursor: pointer;
   font-size: 14px;
@@ -65,5 +65,5 @@ button {
 }
 
 button:hover {
-  color: #000000;
+  color: #0a9396;
 }

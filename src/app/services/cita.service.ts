@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { Cita } from '../models/cita';
 import { UsuarioService } from './usuario.service';
 import { LocalStorageService } from './LocalStorageService';
@@ -36,6 +36,23 @@ export class CitaService {
       })
     );
   }
+  verificarHorasOcupadas(fecha: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/horas-ocupadas`, {
+      params: { fecha },
+    });
+  }
+
+  verificarDisponibilidad(fechaHora: string): Observable<boolean> {
+    return this.http
+      .get<any>(`${this.apiUrl}/verificar-disponibilidad`, {
+        params: { fechaHora },
+      })
+      .pipe(
+        map((response) => response.disponible),
+        catchError(() => of(false)) // Si ocurre un error, devuelve "false" como no disponible
+      );
+  }
+
   eliminarCita(id: number | undefined): Observable<void> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
