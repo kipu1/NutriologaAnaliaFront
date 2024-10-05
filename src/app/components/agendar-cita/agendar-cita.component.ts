@@ -41,6 +41,7 @@ export class AgendarCitaComponent {
         next: () => {
           this.toastr.success('Cita agendada con éxito', 'Éxito');
           this.cita = new Cita(undefined, '', '', '', '', ''); // Limpiar el formulario
+          window.location.reload(); // Refrescar la página
         },
         error: () => {
           this.toastr.error('Error al agendar la cita.', 'Error');
@@ -55,8 +56,6 @@ export class AgendarCitaComponent {
     const diaSemana = fecha.getUTCDay(); // Obtener el día en formato UTC
 
     // Aquí es donde colocas los console.log para depurar
-    console.log('Fecha seleccionada:', this.fechaSeleccionada); // Verifica qué fecha se está seleccionando
-    console.log('Día de la semana (UTC):', diaSemana); // Verifica qué día de la semana está devolviendo
 
     // Limpiar las horas disponibles al cambiar la fecha
     this.horasDisponibles = [];
