@@ -16,10 +16,6 @@ export class AgendarCitaComponent {
   // Inicia la cita con `fechaHora` como un objeto `Date`.
   cita: Cita = new Cita(undefined, '', '', '', '', '');
   fechaMinima: string;
-  horariosOcupados: string[] = [];
-  horariosDisponibles: string[] = [];
-  fechaSeleccionada: string = ''; // Para guardar la fecha seleccionada
-  horaSeleccionada: string = ''; // Para guardar la hora seleccionada
 
   constructor(
     private citaService: CitaService,
@@ -29,85 +25,15 @@ export class AgendarCitaComponent {
     this.fechaMinima = hoy.toISOString().substring(0, 16);
   }
 
-  ngOnInit() {}
-
-  cargarHorariosOcupados() {
-    if (!this.fechaSeleccionada) {
-      return; // Asegurarse de que haya una fecha seleccionada antes de cargar los horarios
-    }
-    this.citaService.obtenerHorariosOcupados(this.fechaSeleccionada).subscribe({
-      next: (response) => {
-        this.horariosOcupados = response; // Cargar los horarios ocupados
-        this.filtrarHorariosDisponibles(); // Filtrar los horarios disponibles
-      },
-      error: () => {
-        this.toastr.error('Error al cargar los horarios ocupados.', 'Error');
-      },
-    });
-  }
-
-  filtrarHorariosDisponibles() {
-    const day = new Date(this.fechaSeleccionada).getDay();
-
-    // Horarios válidos para días entre semana y sábados
-    const turnosValidosEntreSemana: string[] = [
-      '17:30',
-      '18:00',
-      '18:30',
-      '19:00',
-      '19:30',
-      '20:00',
-    ];
-    const turnosValidosSabado: string[] = [
-      '10:00',
-      '10:30',
-      '11:00',
-      '11:30',
-      '12:00',
-      '12:30',
-      '13:00',
-      '13:30',
-      '14:00',
-      '14:30',
-      '15:00',
-      '15:30',
-      '16:00',
-      '16:30',
-      '17:00',
-      '17:30',
-      '18:00',
-      '18:30',
-      '19:00',
-      '19:30',
-      '20:00',
-    ];
-
-    let turnosValidos: string[] = [];
-    if (day === 6) {
-      turnosValidos = turnosValidosSabado;
-    } else if (day === 2 || day === 3 || day === 4) {
-      turnosValidos = turnosValidosEntreSemana;
-    }
-
-    this.horariosDisponibles = turnosValidos.filter(
-      (turno) => !this.horariosOcupados.includes(turno)
-    );
-  }
-
   agendarCita() {
     if (this.validarFechaHora()) {
-      // Crear una cadena de fecha y hora en el formato local sin UTC
-      const fechaHoraCompleta = new Date(
-        `${this.fechaSeleccionada}T${this.horaSeleccionada}:00`
-      );
-
-      // Guardar la fecha y hora sin cambiar la zona horaria
-      this.cita.fechaHora = this.formatoFechaLocal(fechaHoraCompleta);
+      // Mantener la fecha y hora seleccionada sin convertir a UTC
+      this.cita.fechaHora = this.cita.fechaHora;
 
       this.citaService.agendarCita(this.cita).subscribe({
-        next: () => {
+        next: (response) => {
           this.toastr.success('Cita agendada con éxito', 'Éxito');
-          this.cita = new Cita(undefined, '', '', '', '', ''); // Limpiar el formulario
+          this.cita = new Cita(undefined, '', '', '', '', ''); // Limpiar formulario
         },
         error: (error) => {
           if (error.status === 409) {
@@ -124,28 +50,84 @@ export class AgendarCitaComponent {
   }
 
   validarFechaHora(): boolean {
-    if (!this.fechaSeleccionada || !this.horaSeleccionada) {
-      this.toastr.error('Debe seleccionar una fecha y hora válidas.', 'Error');
+    const fechaHoraSeleccionada = new Date(this.cita.fechaHora);
+    const day = fechaHoraSeleccionada.getDay(); // 0: domingo, 1: lunes, ..., 6: sábado
+    const hour = fechaHoraSeleccionada.getHours();
+    const minutes = fechaHoraSeleccionada.getMinutes();
+
+    // Verificar que sea martes (2), miércoles (3), jueves (4) o sábado (6)
+    if (day !== 2 && day !== 3 && day !== 4 && day !== 6) {
+      this.toastr.error(
+        'Solo se pueden agendar citas los martes, miércoles, jueves',
+        'Error'
+      );
       return false;
     }
 
-    if (!this.horariosDisponibles.includes(this.horaSeleccionada)) {
-      this.toastr.error('El horario seleccionado no está disponible.', 'Error');
-      return false;
+    // Turnos permitidos para martes, miércoles y jueves (de 5:30 PM a 8:30 PM)
+    const turnosValidosEntreSemana = [
+      { hour: 17, minutes: 30 }, // 5:30 PM
+      { hour: 18, minutes: 0 }, // 6:00 PM
+      { hour: 18, minutes: 30 }, // 6:30 PM
+      { hour: 19, minutes: 0 }, // 7:00 PM
+      { hour: 19, minutes: 30 }, // 7:30 PM
+      { hour: 20, minutes: 0 }, // 8:00 PM
+    ];
+
+    // Turnos permitidos para sábados (de 10:00 AM a 8:30 PM)
+    const turnosValidosSabado = [
+      { hour: 10, minutes: 0 }, // 10:00 AM
+      { hour: 10, minutes: 30 }, // 10:30 AM
+      { hour: 11, minutes: 0 }, // 11:00 AM
+      { hour: 11, minutes: 30 }, // 11:30 AM
+      { hour: 12, minutes: 0 }, // 12:00 PM
+      { hour: 12, minutes: 30 }, // 12:30 PM
+      { hour: 13, minutes: 0 }, // 1:00 PM
+      { hour: 13, minutes: 30 }, // 1:30 PM
+      { hour: 14, minutes: 0 }, // 2:00 PM
+      { hour: 14, minutes: 30 }, // 2:30 PM
+      { hour: 15, minutes: 0 }, // 3:00 PM
+      { hour: 15, minutes: 30 }, // 3:30 PM
+      { hour: 16, minutes: 0 }, // 4:00 PM
+      { hour: 16, minutes: 30 }, // 4:30 PM
+      { hour: 17, minutes: 0 }, // 5:00 PM
+      { hour: 17, minutes: 30 }, // 5:30 PM
+      { hour: 18, minutes: 0 }, // 6:00 PM
+      { hour: 18, minutes: 30 }, // 6:30 PM
+      { hour: 19, minutes: 0 }, // 7:00 PM
+      { hour: 19, minutes: 30 }, // 7:30 PM
+      { hour: 20, minutes: 0 }, // 8:00 PM
+    ];
+
+    // Validar los turnos según el día
+    let turnoValido = false;
+    if (day === 6) {
+      // Sábado
+      turnoValido = turnosValidosSabado.some(
+        (turno) => turno.hour === hour && turno.minutes === minutes
+      );
+      if (!turnoValido) {
+        this.toastr.error(
+          'Por favor selecciona un turno válido para sábado: de 10:00 AM a 8:30 PM',
+          'Error'
+        );
+        return false;
+      }
+    } else {
+      // Martes, miércoles o jueves
+      turnoValido = turnosValidosEntreSemana.some(
+        (turno) => turno.hour === hour && turno.minutes === minutes
+      );
+      if (!turnoValido) {
+        this.toastr.error(
+          'Por favor selecciona un turno válido para martes, miércoles o jueves: de 5:30 PM a 8:30 PM',
+          'Error'
+        );
+        return false;
+      }
     }
 
     return true;
-  }
-
-  // Formatear la fecha local sin la zona horaria UTC
-  formatoFechaLocal(fecha: Date): string {
-    const anio = fecha.getFullYear();
-    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Mes en formato 2 dígitos
-    const dia = fecha.getDate().toString().padStart(2, '0');
-    const hora = fecha.getHours().toString().padStart(2, '0');
-    const minutos = fecha.getMinutes().toString().padStart(2, '0');
-
-    return `${anio}-${mes}-${dia}T${hora}:${minutos}:00`;
   }
 }
 /* agendarCita() {

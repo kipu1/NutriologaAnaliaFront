@@ -38,38 +38,23 @@
         name="telefono"
         required
         class="form-control"
-        placeholder="Ingresa tu teléfono"
+        placeholder="Ingresa su teléfono"
       />
     </div>
   </div>
 
   <div class="form-group">
-    <label for="fecha">Fecha:</label>
+    <label for="fechaHora">Fecha y Hora:</label>
     <input
-      id="fecha"
-      type="date"
-      [(ngModel)]="fechaSeleccionada"
-      name="fecha"
+      id="fechaHora"
+      type="datetime-local"
+      [(ngModel)]="cita.fechaHora"
+      name="fechaHora"
       required
       class="form-control"
-      (change)="cargarHorariosOcupados()"
+      (change)="validarFechaHora()"
       [min]="fechaMinima"
     />
-  </div>
-
-  <div class="form-group">
-    <label for="hora">Hora:</label>
-    <select
-      id="hora"
-      [(ngModel)]="horaSeleccionada"
-      name="hora"
-      required
-      class="form-control"
-    >
-      <option *ngFor="let horario of horariosDisponibles" [value]="horario">
-        {{ horario }}
-      </option>
-    </select>
   </div>
 
   <div class="form-group">
