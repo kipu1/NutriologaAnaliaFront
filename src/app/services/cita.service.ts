@@ -41,7 +41,15 @@ export class CitaService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete<void>(`${this.apiUrl}/eliminar/${id}`, { headers });
   }
-
+  obtenerHorariosOcupados(fecha: string): Observable<string[]> {
+    if (!fecha) {
+      console.error('La fecha está vacía o no es válida');
+      return throwError('La fecha está vacía o no es válida');
+    }
+    return this.http.get<string[]>(
+      `${this.apiUrl}/horarios-ocupados?fecha=${fecha}`
+    );
+  }
   // Actualizar cita
   actualizarCita(id: number, cita: Cita): Observable<Cita> {
     const token = localStorage.getItem('token'); // Obtener el token del localStorage
