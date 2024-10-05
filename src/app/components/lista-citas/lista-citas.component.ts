@@ -23,6 +23,7 @@ export class ListaCitasComponent implements OnInit {
   calendarOptions: any;
   mostrarModal: boolean = false; // Estado del modal
   citaSeleccionada: Cita | null = null; // Cita seleccionada
+  mostrarSabado: boolean = true; // Estado para mostrar u ocultar las citas del sábado
 
   constructor(
     private citaService: CitaService,
@@ -80,16 +81,30 @@ export class ListaCitasComponent implements OnInit {
   }
 
   convertirCitasAEventos(): void {
-    const eventos = this.citas.map((cita) => {
-      return {
-        id: cita.id,
-        title: cita.nombre,
-        start: cita.fechaHora,
-        extendedProps: { id: cita.id }, // Agregar ID como propiedad extendida para identificar la cita
-        description: cita.motivo,
-      };
-    });
+    const eventos = this.citas
+      .filter((cita) => {
+        const diaSemana = new Date(cita.fechaHora).getUTCDay();
+        // Si mostrarSabado es falso, ocultar las citas del sábado
+        if (!this.mostrarSabado && diaSemana === 6) {
+          return false;
+        }
+        return true;
+      })
+      .map((cita) => {
+        return {
+          id: cita.id,
+          title: cita.nombre,
+          start: cita.fechaHora,
+          extendedProps: { id: cita.id }, // Agregar ID como propiedad extendida para identificar la cita
+          description: cita.motivo,
+        };
+      });
     this.calendarOptions.events = eventos;
+  }
+
+  toggleMostrarSabado(): void {
+    this.mostrarSabado = !this.mostrarSabado;
+    this.convertirCitasAEventos(); // Recargar los eventos del calendario
   }
 
   eliminarCita(id: number | undefined): void {

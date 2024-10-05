@@ -2,6 +2,11 @@
   <full-calendar [options]="calendarOptions"></full-calendar>
 </div>
 
+<!-- Botón para mostrar/ocultar citas del sábado -->
+<button (click)="toggleMostrarSabado()" class="btn-toggle-sabado">
+  {{ mostrarSabado ? "Ocultar citas del sábado" : "Mostrar citas del sábado" }}
+</button>
+
 <!-- Ventana Modal -->
 <div *ngIf="mostrarModal" class="modal-overlay">
   <div class="modal-content">
