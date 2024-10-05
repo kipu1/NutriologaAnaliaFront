@@ -1,9 +1,10 @@
 .servicio-form {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  background-color: #d1f4df;
+  padding: 50px;
+  border-radius: 10px;
+  width: 320px;
+  margin: 15px auto;
+  text-align: center;
 }
 
 .servicio-form .form-group {
@@ -26,7 +27,7 @@
 }
 
 .servicio-form .btn-submit {
-  background-color: #1c5ae1;
+  background-color: #005f73;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -36,7 +37,7 @@
 }
 
 .servicio-form .btn-submit:hover {
-  background-color: #73c1d5;
+  background-color: #0a9396;
 }
 
 .direccion-list {

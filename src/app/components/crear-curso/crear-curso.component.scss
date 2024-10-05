@@ -1,14 +1,14 @@
 .form-container {
-  background-color: #1f1f1f;
+  background-color: #d1f4df;
   padding: 50px;
   border-radius: 10px;
   width: 350px;
-  margin: 0 auto;
+  margin: 15px auto;
   text-align: center;
 }
 
 h2 {
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 20px;
   font-size: 24px;
 }
@@ -19,7 +19,7 @@ form div {
 }
 
 label {
-  color: #ffffff;
+  color: #000000;
   font-size: 14px;
   display: block;
   margin-bottom: 5px;
@@ -33,8 +33,8 @@ textarea {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #333; /* Fondo oscuro */
-  color: #fff; /* Texto blanco */
+  background-color: #ffffff; /* Fondo oscuro */
+  color: #000000; /* Texto blanco */
   font-weight: bold; /* Negrita */
 }
 
@@ -46,21 +46,21 @@ button {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #00b894;
+  background-color: #005f73;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #019873;
+  background-color: #0a9396;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #888;
+  color: #000000;
 }
 
 input[type="file"] {
-  color: #fff;
+  color: #000000;
 }
