@@ -139,7 +139,7 @@ export class AgendarCitaComponent {
       // Si el día es inválido (domingo, lunes o viernes), no mostrar ningún turno
       this.horasDisponibles = []; // Asegurar que no se muestren horas para días inválidos
       this.toastr.error(
-        'Solo se pueden agendar citas los martes, miércoles, jueves o sábados.',
+        'Solo se pueden agendar citas los martes, miércoles, jueves',
         'Error'
       );
     }
@@ -160,7 +160,7 @@ export class AgendarCitaComponent {
     // Verificar los días permitidos (martes, miércoles, jueves, sábado)
     if (day !== 2 && day !== 3 && day !== 4 && day !== 6) {
       this.toastr.error(
-        'Solo se pueden agendar citas los martes, miércoles, jueves o sábado.',
+        'Solo se pueden agendar citas los martes, miércoles, jueves',
         'Error'
       );
       return false;
