@@ -30,6 +30,21 @@ export class AgendarCitaComponent {
   }
 
   agendarCita() {
+    // Asegúrate de que todos los campos estén completos
+    if (
+      !this.cita.nombre ||
+      !this.cita.telefono ||
+      !this.cita.motivo ||
+      !this.fechaSeleccionada ||
+      !this.horaSeleccionada
+    ) {
+      this.toastr.error(
+        'Por favor completa todos los campos antes de agendar.',
+        'Error'
+      );
+      return; // Salir de la función si falta algún campo
+    }
+
     // Asegúrate de que la fecha y la hora se concatenan correctamente en el formato "yyyy-MM-ddTHH:mm:ss"
     const fechaHoraCompleta = `${this.fechaSeleccionada}T${this.horaSeleccionada}:00`;
 
