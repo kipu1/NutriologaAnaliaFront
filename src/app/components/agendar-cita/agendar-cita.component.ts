@@ -26,7 +26,7 @@ export class AgendarCitaComponent {
     private toastr: ToastrService // Inyectar ToastrService
   ) {
     const hoy = new Date();
-    this.fechaMinima = hoy.toISOString().substring(0, 16);
+    this.fechaMinima = hoy.toISOString().split('T')[0];
   }
 
   agendarCita() {
@@ -108,22 +108,6 @@ export class AgendarCitaComponent {
           { horaTexto: '11:30 AM', hora: '11:30' },
           { horaTexto: '12:00 PM', hora: '12:00' },
           { horaTexto: '12:30 PM', hora: '12:30' },
-          { horaTexto: '1:00 PM', hora: '13:00' },
-          { horaTexto: '1:30 PM', hora: '13:30' },
-          { horaTexto: '2:00 PM', hora: '14:00' },
-          { horaTexto: '2:30 PM', hora: '14:30' },
-          { horaTexto: '3:00 PM', hora: '15:00' },
-          { horaTexto: '3:30 PM', hora: '15:30' },
-          { horaTexto: '4:00 PM', hora: '16:00' },
-          { horaTexto: '4:30 PM', hora: '16:30' },
-          { horaTexto: '5:00 PM', hora: '17:00' },
-          { horaTexto: '5:30 PM', hora: '17:30' },
-          { horaTexto: '6:00 PM', hora: '18:00' },
-          { horaTexto: '6:30 PM', hora: '18:30' },
-          { horaTexto: '7:00 PM', hora: '19:00' },
-          { horaTexto: '7:30 PM', hora: '19:30' },
-          { horaTexto: '8:00 PM', hora: '20:00' },
-          { horaTexto: '8:30 PM', hora: '20:30' },
         ];
 
         this.citaService
@@ -183,21 +167,6 @@ export class AgendarCitaComponent {
       { hour: 11, minutes: 30 },
       { hour: 12, minutes: 0 },
       { hour: 12, minutes: 30 },
-      { hour: 13, minutes: 0 },
-      { hour: 13, minutes: 30 },
-      { hour: 14, minutes: 0 },
-      { hour: 14, minutes: 30 },
-      { hour: 15, minutes: 0 },
-      { hour: 15, minutes: 30 },
-      { hour: 16, minutes: 0 },
-      { hour: 16, minutes: 30 },
-      { hour: 17, minutes: 0 },
-      { hour: 17, minutes: 30 },
-      { hour: 18, minutes: 0 },
-      { hour: 18, minutes: 30 },
-      { hour: 19, minutes: 0 },
-      { hour: 19, minutes: 30 },
-      { hour: 20, minutes: 0 },
     ];
 
     let turnoValido = false;
